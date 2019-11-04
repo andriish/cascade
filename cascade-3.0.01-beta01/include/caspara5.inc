@@ -1,0 +1,3 @@
+	Integer LST,IRES
+      COMMON/CAPAR6/LST(30),IRES(2)
+

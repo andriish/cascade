@@ -1,0 +1,237 @@
+CASCADE 
+*            Version  3.0.01 (11.2018)
+*            new steering file included
+*            interfaces for POWHEG,MC@NLO, KaTie
+*            optional for NLO initial state parton shower
+*
+*            Version  2.4.24 (08.2018)
+*            PDFinfo included for HEPMCrecord
+*            scale and ktmax changed for use in POWHEG
+*
+*            Version  2.4.23 (06 2018)
+*            bug fix in final state PS treatment in cas_lheread 
+*            (especailly problematic for W/Z+2jet)
+*            bug fix for FPS for IFIN=1 (previously no PS was generated)
+*            Update to reweight LHE file to collinear pdf
+*
+*            Version  2.4.17 (04 2018)
+*            again a bug fix for norm in casmain (10^3 was missing when xsec to convhepmc (only for Katie old version)
+*            
+*
+*            now also asymmetric beams allowed, essentially for pA
+*            
+*            Version  2.4.16 (10 2017)
+*            bug fix for normalisation in casmain and cas_leread for ILHE=1
+*            Version  2.4.15 (10 2017)
+* 		 bug fix with boost in cascps, which lead to crashed in Rivet
+*            Furhter improvements in running with LHE files
+*            Version  2.4.07 (10 2016)
+*            including read of LHE files
+*            ICCFM=0 does no longer require DGLAP data set, but imposes only 
+*               cut on kt
+*            Version  2.4.00 (07 2016)
+*            Version including writeout to hepmc
+*            Version  2.3.14 (08 2014)
+*		 PYINRE included in caps.F to initialise width for resonce decays
+* 		 to allow also ttbar production.
+*
+*            Version  2.3.13 (07 2014)
+*		 double J/psi production included.
+*		 updates in casbran for consitency. 
+*            Updated also upper z limit, to aviod high pt remnants.
+*
+CASCADE 
+*            Version  2.3.12 (02 2014)
+*            inconsistencies in steer.F cascha.F cauniglu.F corrected
+*
+CASCADE 
+*            Version  2.3.11 (02 2014)
+*            new CCFM gluon included: JH 2013 set1, JH 2013 set2
+*            2.*Ca*alphas/2./pi  added in casbran.F
+CASCADE 
+*            Version  2.3.10  (03 2013)
+*            QCDLAM set in cascps
+CASCADE 
+*            Version  2.3.08  (02 2013)
+*            meoffsh corrected for proper prefactors for gg_> and qg->qg
+CASCADE 
+*            Version  2.3.07  (02 2013)
+*            bug in event (2.3.06 corrected)
+*            use proper alphas and QCDlam in casbran.F
+CASCADE 
+*            Version  2.3.06  (12 2012)
+*            CKM matrix for Wq production included
+CASCADE 
+*            Version  2.3.05  (10 2012)
+*            CKM matrix for Wqq production included+adding all pieces separatly
+*            Version  2.3.04  (10 2012)
+*            chib(3P) states included
+*            copy from timel.cc (from cernlib) included
+*            convhepmc.cc for conversion of hepevt to hempc record included 
+*            further printout in caend added
+*
+*            Version  2.3.03  (7 2012)
+*            PDG code for onium states updated... before nonstandard codes
+*
+*            Version  2.3.02  (? 2012)
+*            caupevent corrected to treat properly excited Onium states
+*
+*            Version  2.3.01  (Mar 2012)
+*            alphas in casbran.F changed to allow also 2loop alphas (NEEDs
+*            furter checks)
+CASCADE 
+*            Version  2.3.01  (Mar 2012)
+*            treatment of potential double counting in gg->gg->qqbar and
+*                gg->qqbar (new veto in caps.F)
+*            bug fix in meoffsh: Rleg was not kept fixed for multiple
+*                calcualtion of xsec in event.F
+CASCADE 
+*            Version  2.2.07  (Aug 2011)
+* 		 seed for random numbers is now set by environment variable CASEED
+* 		 -> minuts.F no longer needed
+* 		 convhepmc included for ariting out hepmc format: 
+*		 hepmc output file is specified by environment variable: HEPMCOUT
+* 
+CASCADE 
+*            Version  2.2.06  (May 2011)
+*		 meoffsh: IQ2=7 same as IQ2=8: max fact. scale.
+*            allow for qg->q: changes in caps.F etc.
+CASCADE 
+*            Version  2.2.05  (May 2011)
+* 		 caps.F changes for scale of final state PS
+* 		 IQ2 = 8: scale for alphas = max(factorisation scale) included
+* 		 casbran.F: allow for full shower in KMR, not only first emission
+CASCADE 
+*            Version  2.2.04  (Nov 2010)
+*		 factor 1/2 for identical particles for gg->gg included in meoffsh
+* 		 optional kt for scale for alphas consitently introduced
+* 		 
+CASCADE 
+*            Version  2.2.03  (Nov 2010)
+*            vectormeson production Y(2S) and Y(3S) and PSI(2S) included.
+*		 wave function for chi_c,chi_b produciton in 1P,2P,3P states included
+*            decays are updated via data file to be read in
+*            bug corrected when setting stable h0,W,Z
+CASCADE 
+*            Version  2.2.02  (Oct 2010)
+*            problem when linking with shared libraries solved by explicitly	
+*            calling a dummy subroutine with PYDATA as argument in the main
+*            program.
+CASCADE 
+*            Version  2.2.01  (Sep 2010)
+*		 scales for 2->1 processes corrected (before was using only stmax)
+*		 bug for chi production in caps corrected (7.Sep 2010)
+*            Version  2.2.01  (Aug 2010)
+*		 bug in caps.F corrected, when resonance was set stable resulted 
+* 		  e/p violation
+*		 pdfname now changed to character*512
+*            installation procedure with autotools changes:
+*		      - pythia6 and lhapdf lib paths now as input string to
+*                   ./configure
+*		 incorrect path in ktstfu corrected
+CASCADE 
+*            Version  2.2.00  (Aug 2010)
+*            timelike showering in initial state cascade 
+*            forward DY process added
+*            J/psi and chi_c (b) production added
+*            all commons/variables now in double precision (version before cause
+*            problems for LHC enegies and small x)
+*            obsolete routines from bases removed
+*		 Bug in kinematics for Higgs prod corrected.
+*            
+*________________________________________________________________________
+*            Version  2.1.00  (31. Dec 2009)
+*            pt cuts are now done all in meoffsh routines on partons entering ME calc
+*            W/Z + QQ production added
+*            QCD jet production with qg->qg and gg->gg for onshell quark (onshell g) included
+*		
+*________________________________________________________________________
+CASCADE 
+*            Version  2.0.02  (Sept 2009)
+*		 meoffsh includes again correction for k^2 = kt^2 (needed for
+*             reasonable description of F2 at small x
+*	        bug corrected for this correction in px,py (generate phi instead of cos phi)
+*            only one library created, including all files (16.Aug 2008)
+*            CCFMSTFQ for the unintegrated valence quark distribution added(12.Aug 2008)
+*            autotools now also with shared libraries (20. Mar 2008)
+*            updated steering files, also for GENSER.(20. Mar 2008)
+*            bug in event corrected: only events with xsec>0 accepted (5.4.08)
+*		 NOW CERNLIB free version
+* 		 in caps: for IHLA=10 MSTJ(41)=1 enforced to avoid isolated photons
+*              from FPS in pythia event record
+*		 Simple MC integration and generation routine included via IINT=1
+CASCADE 
+*            Version  2.0.01  (24.Dec 2007)
+*            improvements done on installation using autotools
+*            working now with make and make install
+*________________________________________________________________________
+CASCADE 
+*            Version  2.0.00 
+*            LHA interface for PYTHIA/HERWIG included
+*            IHLA=10 uses PYTHIA for final state PS and remnant treatment
+*            updates in caupinit,caupevnt
+*            update in p_semih.F: removed line with P(2,4)=abs(p(2,3)
+*            update in caps.F restored event record also for LST(21)=55
+*                             caused energy-mom mismatch before.
+*                             for ILHA>1 also use caremn.F
+*                             more precise energy-mom check
+*            update in caremn.F for IHLA>1 set pt diquark=0
+*                             for IHLA>1 limit chi<0.8
+*            meoffsh: scale PT2Q changed to average of 2 outgoing quarks
+*                     reduces xsection by ca 20% (compared to vers 1.2)
+*________________________________________________________________________
+CASCADE 
+*            Version  12010
+*          - insq set to 0, as for updfs... (in casbran.F)
+*          - Qlam0 set to Qg0, as in updf .. (in casbran.F) 
+*          - changed upper limit of xsi_hard to min(xsi_hard(2),5.d8) in cascps.F 
+*                  showed up in wrong Qmax distribution for PS.
+*          - no IPS for QG21 (QG22) < Q0 (in cascps.F)
+*          - final state PS was always essentially switched off by IFINAL=0 in
+*            caps.F. changed to default IFINAL=1.
+*          - ordering in casbran.F was wrong, always only q ordering instead of
+*            angular ordering (using now casbran-v24.F).
+*________________________________________________________________________
+CASCADE 
+*            Version  12009
+*            meoffsh updated: now 2 scales for pp
+*            unnecceary cut in caps removed (xgtest), which caused asymmetry 
+*              in parton showering
+*            bug in cascps.F corrected: xsi_hard was wrong for beam 1
+*________________________________________________________________________
+CASCADE with LHA interface
+*            Version  12008
+*            ILHA = 1 added: event record written to file in LHA format to be
+*                            read in by PYTHIA or HERWIG
+*            ILHA = 10 added: PYTHIA (using LHA interface) is called directly to
+*                            do final state PS and hadronsiation. 
+*________________________________________________________________________
+CASCADE 
+*            Version  12007
+*            date: 2004/12/23
+*            bug in cascade for new gluon dat files corrected:  
+*            IPS was switched off
+*      
+*            bug in steer corrected Nmax now at 1000 
+*
+CASCADE (with PYTHIA6.226)
+*            Version  12003
+*            bug in cascps corrected 
+*            date: 2004/11/09 13:42:21;  
+*            steering files updated to new frag. parameters according to Victor & Guenter
+*            date: 2004/09/10 17:20:26; 
+*            updated to read scale parameters from gluon file
+*            date: 2004/11/08 06:47:41; 
+*            bugs in cascps and casbran for ppbar corrected
+*            bug in casbran (neg t in log) corrected (found by  Eduardo Rodrigues )
+*             
+*________________________________________________________________________
+CASCADE  
+*            Version  12000
+*            Higgs production included
+*            e+e- option and resolved photons included
+*________________________________________________________________________
+CASCADE  
+*            Version  10000
+*            published version for ep and pp 
+*________________________________________________________________________

@@ -1,0 +1,133 @@
+\providecommand{\etal}{et al.\xspace}
+\providecommand{\href}[2]{#2}
+\providecommand{\coll}{Coll.}
+\catcode`\@=11
+\def\@bibitem#1{%
+\ifmc@bstsupport
+  \mc@iftail{#1}%
+    {;\newline\ignorespaces}%
+    {\ifmc@first\else.\fi\orig@bibitem{#1}}
+  \mc@firstfalse
+\else
+  \mc@iftail{#1}%
+    {\ignorespaces}%
+    {\orig@bibitem{#1}}%
+\fi}%
+\catcode`\@=12
+\begin{mcbibliography}{10}
+
+\bibitem{Alioli:2010xa}
+S.~Alioli, K.~Hamilton, P.~Nason, C.~Oleari, and E.~Re,
+\newblock JHEP{} {\bf 04},~081~(2011).
+\newblock \href{http://www.arXiv.org/abs/1012.3380}{{\tt 1012.3380}}\relax
+\relax
+\bibitem{Frixione:2007vw}
+S.~Frixione, P.~Nason, and C.~Oleari,
+\newblock JHEP{} {\bf 0711},~070~(2007).
+\newblock \href{http://www.arXiv.org/abs/0709.2092}{{\tt 0709.2092}}\relax
+\relax
+\bibitem{Frixione:2006gn}
+S.~Frixione and B.~R. Webber~(2006).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0612272}{{\tt
+  hep-ph/0612272}}\relax
+\relax
+\bibitem{Frixione:2003ei}
+S.~Frixione, P.~Nason, and B.~R. Webber,
+\newblock JHEP{} {\bf 08},~007~(2003).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0305252}{{\tt
+  hep-ph/0305252}}\relax
+\relax
+\bibitem{Frixione:2002bd}
+S.~Frixione and B.~R. Webber~(2002).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0207182}{{\tt
+  hep-ph/0207182}}\relax
+\relax
+\bibitem{Frixione:2002ik}
+S.~Frixione and B.~R. Webber,
+\newblock JHEP{} {\bf 0206},~029~(2002).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0204244}{{\tt
+  hep-ph/0204244}}\relax
+\relax
+\bibitem{Alwall:2006yp}
+J.~Alwall {\em et al.},
+\newblock Comput. Phys. Commun.{} {\bf 176},~300~(2007).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0609017}{{\tt
+  hep-ph/0609017}}\relax
+\relax
+\bibitem{Hautmann:2017fcj}
+F.~Hautmann, H.~Jung, A.~Lelek, V.~Radescu, and R.~Zlebcik~(2017).
+\newblock \href{http://www.arXiv.org/abs/1708.03279}{{\tt 1708.03279}}\relax
+\relax
+\bibitem{Hautmann:2017xtx}
+F.~Hautmann, H.~Jung, A.~Lelek, V.~Radescu, and R.~Zlebcik,
+\newblock Phys. Lett.{} {\bf B772},~446~(2017).
+\newblock \href{http://www.arXiv.org/abs/1704.01757}{{\tt 1704.01757}}\relax
+\relax
+\bibitem{Jung:2010si}
+H.~Jung, S.~Baranov, M.~Deak, A.~Grebenyuk, F.~Hautmann, {\em et al.},
+\newblock Eur.Phys.J.{} {\bf C70},~1237~(2010).
+\newblock \href{http://www.arXiv.org/abs/1008.0152}{{\tt 1008.0152}}\relax
+\relax
+\bibitem{Jung:2001hx}
+H.~Jung,
+\newblock Comput. Phys. Commun.{} {\bf 143},~100~(2002).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0109102}{{\tt
+  hep-ph/0109102}}\relax
+\relax
+\bibitem{Jung:2000hk}
+H.~Jung and G.~P. Salam,
+\newblock Eur. Phys. J.{} {\bf C19},~351~(2001).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0012143}{{\tt
+  hep-ph/0012143}}\relax
+\relax
+\bibitem{vanHameren:2016kkz}
+A.~van Hameren~(2016).
+\newblock \href{http://www.arXiv.org/abs/1611.00680}{{\tt 1611.00680}}\relax
+\relax
+\bibitem{Bengtsson:1986gz}
+M.~Bengtsson, T.~Sjostrand, and M.~van Zijl,
+\newblock Z. Phys.{} {\bf C32},~67~(1986)\relax
+\relax
+\bibitem{Ciafaloni:1987ur}
+M.~Ciafaloni,
+\newblock Nucl. Phys.{} {\bf B296},~49~(1988)\relax
+\relax
+\bibitem{Catani:1989yc}
+S.~Catani, F.~Fiorani, and G.~Marchesini,
+\newblock Phys. Lett.{} {\bf B234},~339~(1990)\relax
+\relax
+\bibitem{Catani:1989sg}
+S.~Catani, F.~Fiorani, and G.~Marchesini,
+\newblock Nucl. Phys.{} {\bf B336},~18~(1990)\relax
+\relax
+\bibitem{Marchesini:1994wr}
+G.~Marchesini,
+\newblock Nucl. Phys.{} {\bf B445},~49~(1995).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/9412327}{{\tt
+  hep-ph/9412327}}\relax
+\relax
+\bibitem{Platzer:2011dq}
+S.~Platzer and M.~Sjodahl,
+\newblock Eur.Phys.J.Plus{} {\bf 127},~26~(2012).
+\newblock \href{http://www.arXiv.org/abs/1108.6180}{{\tt 1108.6180}}\relax
+\relax
+\bibitem{Hautmann:2014kza}
+F.~Hautmann, H.~Jung, M.~Kr{\"a}mer, P.~Mulders, E.~Nocera, {\em et al.},
+\newblock Eur. Phys. J.{} {\bf C 74},~3220~(2014).
+\newblock \href{http://www.arXiv.org/abs/1408.3015}{{\tt 1408.3015}}\relax
+\relax
+\bibitem{Bury:2017jxo}
+M.~Bury, A.~van Hameren, H.~Jung, K.~Kutak, S.~Sapeta, and M.~Serino~(2017).
+\newblock \href{http://www.arXiv.org/abs/1712.05932}{{\tt 1712.05932}}\relax
+\relax
+\bibitem{Dobbs:2001ck}
+M.~Dobbs and J.~B. Hansen,
+\newblock Comput. Phys. Commun.{} {\bf 134},~41~(2001)\relax
+\relax
+\bibitem{Buckley:2010ar}
+A.~Buckley, J.~Butterworth, L.~Lonnblad, D.~Grellscheid, H.~Hoeth, J.~Monk,
+  H.~Schulz, and F.~Siegert,
+\newblock Comput. Phys. Commun.{} {\bf 184},~2803~(2013).
+\newblock \href{http://www.arXiv.org/abs/1003.0694}{{\tt 1003.0694}}\relax
+\relax
+\end{mcbibliography}

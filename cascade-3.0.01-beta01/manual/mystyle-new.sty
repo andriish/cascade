@@ -1,0 +1,86 @@
+
+
+
+\usepackage{palatino}%    Choose default roman font.  Others are times, pslatex, newcent, bookman, chancery
+\usepackage{helvet}%      Choose default sans serif
+\usepackage{sectsty}%     Change style of headings (should precede section redefinitions below)
+\allsectionsfont{\sffamily}% Set sans serif for all headings
+
+\setlength{\textwidth}{156mm}
+\setlength{\textheight}{200mm}
+\setlength{\columnsep}{10mm}
+\setlength{\columnseprule}{0.3pt}% if zero then there is no rule between 2 columns
+  \setlength{\oddsidemargin}{0mm}
+  \setlength{\evensidemargin}{0mm}
+\setlength{\footskip}{36pt}
+\setlength{\headheight}{25pt}
+\setlength{\headsep}{20pt}%     Distance from bottom of header to main body
+\setlength{\topmargin}{0mm}
+
+\renewcommand\section{\@startsection 
+{section}%
+{1}%
+{\z@}%
+{-3.5ex \@plus -1ex \@minus -.2ex}%       Was: {-3.5ex \@plus -1ex \@minus -.2ex}%
+{1.3ex \@plus.2ex}%                       Was: {2.3ex \@plus.2ex}
+{\sffamily\Large\bfseries}}%              Was: \normalfont ...
+
+\renewcommand\subsection{\@startsection
+{subsection}%
+{2}%
+{\z@}%
+{-3.0ex\@plus -1ex \@minus -.2ex}%       Was: {-3.25ex\@plus -1ex \@minus -.2ex}%  
+{1.05ex \@plus .2ex}%                     Was:   {1.5ex \@plus .2ex}%
+{\sffamily\large\bfseries}}%           Was: \normalfont ...
+
+\renewcommand\subsubsection{\@startsection
+{subsubsection}%
+{3}%
+{\z@}%
+{-3.0ex\@plus -1ex \@minus -.2ex}%       Was: {-3.25ex\@plus -1ex \@minus -.2ex}
+{1.05ex \@plus .2ex}%                     Was:   {1.5ex \@plus .2ex}%
+{\sffamily\normalsize\bfseries}}%           Was: \normalfont ...
+
+\renewcommand\paragraph{\@startsection
+{paragraph}%
+{4}%
+{\z@}%
+{-1.0ex\@plus -1ex \@minus -.2ex}%       Was: {3.25ex \@plus1ex \@minus.2ex}%             Was: 
+{-2em}%                             Was:  If negative, means in-line. Space is then the indentation.
+{\sffamily\normalsize\bfseries}}%           Was: \normalfont ...
+
+\renewcommand\subparagraph{\@startsection
+{subparagraph}%
+{5}%
+{\parindent}%
+{-1.0ex\@plus -1ex \@minus -.2ex}%
+{-2em}%
+{\sffamily\normalsize\bfseries}}%           Was: \normalfont ...
+
+
+%
+% Margin notes
+% ------------
+\setlength{\marginparpush}{\baselineskip}% space between successive notes   
+\setlength{\marginparsep}{3mm}%            distance from main text
+\setlength{\marginparwidth}{20mm}%         width of note
+
+%
+% Paragraph spacing / indentation
+% ------------------------------- 
+%\setlength{\parindent}{0pt}
+%\setlength{\parskip}{\parskipsaved} 
+
+
+\raggedbottom
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Float handling parameters for better placing of figures 
+% -------------------------------------------------------
+%
+\renewcommand{\topfraction}{1.0}
+\renewcommand{\dbltopfraction}{1.0}
+\renewcommand{\bottomfraction}{1.0}
+\renewcommand{\textfraction}{0.2}
+
+

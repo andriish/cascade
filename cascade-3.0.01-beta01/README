@@ -1,0 +1,48 @@
+
+Installation procedure is as follows:
+
+
+
+1) Get the source
+
+tar xvfz cascade-XXXX.tar.gz
+cd cascade-XXXX
+
+2) Generate the Makefiles (do not use shared libraries)
+./configure --disable-shared --prefix=install-path --with-pythia6="pythia6"  --with-lhapdf="lhapdf" --with-tmdlib="TMDlib" --with-gsl="GSL"
+
+with (as example):
+lhapdf="/Users/jung/MCgenerators/lhapdf/5.9.1" 
+pythia6="/Users/jung/MCgenerators/pythia6/428" 
+tmdlib="/Users/jung/jung/cvs/TMDlib" 
+gsl="/sw"
+
+./configure --disable-shared --prefix=/Users/jung/jung/cvs/cascade2/cascade-2.4/local --with-lhapdf="/Users/jung/MCgenerators/lhapdf/5.9.1" --with-pythia6="/Users/jung/MCgenerators/pythia6/428" --with-tmdlib="/Users/jung/jung/cvs/TMDlib" --with-gsl="/sw"
+
+alternative mode:
+export PYTHIA6_DIR=/Users/jung/MCgenerators/pythia6/428
+export LHAPDF_DIR=/Users/jung/MCgenerators/lhapdf/5.9.1
+export TMDLIB_DIR=/Users/jung/jung/cvs/TMDlib
+export HEPMC=/Users/jung/MCgenerators/hepmc/HepMC-2.06.09/local
+export GSL_DIR=/sw
+./configure --disable-shared --prefix=/Users/jung/jung/cvs/cascade2
+
+
+3) Compile the binary
+make
+
+4) Install the execuatable and PDF files
+make install 
+
+4) the execuatble is in bin
+set the path for the updf data files, if different from the default
+
+export PDFPATH=/Users/jung/jung/cvs/cascade2/cascade-2.0.1/share
+
+set a few other environment variables:
+export CASEED=12345
+export HEPMCOUT=myfile.hepmcout   -> needed if you run with HepMC output.
+
+
+run it with:
+cascade < steer_pp-bottom

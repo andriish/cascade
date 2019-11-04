@@ -1,0 +1,9 @@
+* to read and process lhefiles
+
+../bin/cascade < steer_pp-LHEin
+
+You need to set environment variables:
+export CASEED=12345
+export HEPMCOUT=myfile.hepmcout
+
+all other parameters can be set in the steering file: steer_pp-LHEin

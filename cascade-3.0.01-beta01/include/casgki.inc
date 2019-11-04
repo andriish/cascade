@@ -1,0 +1,7 @@
+      Double Precision Q2,YY,YY_BAR,XG,XG_BAR,Xg1sf,Xg2sf
+	Double Precision KT2_1,KT2_2,PT2H,SHH
+      COMMON/CASKINSF/Xg1sf,Xg2sf
+      COMMON/CASKIN/Q2,YY,YY_BAR,XG,XG_BAR,KT2_1,KT2_2,PT2H,SHH
+
+C     SAVE
+

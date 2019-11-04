@@ -1,0 +1,245 @@
+\providecommand{\etal}{et al.\xspace}
+\providecommand{\href}[2]{#2}
+\providecommand{\coll}{Coll.}
+\catcode`\@=11
+\def\@bibitem#1{%
+\ifmc@bstsupport
+  \mc@iftail{#1}%
+    {;\newline\ignorespaces}%
+    {\ifmc@first\else.\fi\orig@bibitem{#1}}
+  \mc@firstfalse
+\else
+  \mc@iftail{#1}%
+    {\ignorespaces}%
+    {\orig@bibitem{#1}}%
+\fi}%
+\catcode`\@=12
+\begin{mcbibliography}{10}
+
+\bibitem{CCFMa}
+M.~Ciafaloni,
+\newblock Nucl. Phys. {\bf B}{} {\bf 296},~49~(1988)\relax
+\relax
+\bibitem{CCFMb}
+S.~Catani, F.~Fiorani, and G.~Marchesini,
+\newblock Phys. Lett. {\bf B}{} {\bf 234},~339~(1990)\relax
+\relax
+\bibitem{Catani:1989sg}
+S.~Catani, F.~Fiorani, and G.~Marchesini,
+\newblock Nucl. Phys.{} {\bf B336},~18~(1990)\relax
+\relax
+\bibitem{CCFMd}
+G.~Marchesini,
+\newblock Nucl. Phys. {\bf B}{} {\bf 445},~49~(1995)\relax
+\relax
+\bibitem{CASCADE}
+H.~Jung,
+\newblock {\em Ccfm prediction on forward jets and $f_2$: parton level
+  predictions and a new hadron level monte carlo generator {\sc cascade}},
+\newblock in {\em Proceedings of the Workshop on Monte Carlo generators for
+  HERA physics}, eds.~A.~Doyle, G.~Grindhammer, G.~Ingelman, and H.~Jung,
+  p.~75.
+\newblock \mbox{DESY}, Hamburg, 1999.
+\newblock Hep-ph/9908497\relax
+\relax
+\bibitem{jung_salam_2000}
+H.~Jung and G.~Salam,
+\newblock Eur. Phys. J. {\bf C}{} {\bf 19},~351~(2001).
+\newblock \mbox{hep-ph/0012143}\relax
+\relax
+\bibitem{smallx:2001}
+\mbox{Small x} Collaboration; B.~Andersson~et al.,
+\newblock Eur. Phys. J. {\bf C}{} {\bf 25},~77~(2002).
+\newblock Hep-ph/0204115\relax
+\relax
+\bibitem{PYTHIAPSa}
+T.~Sj\"ostrand,
+\newblock Phys. Lett. {\bf B}{} {\bf 157},~321~(1985)\relax
+\relax
+\bibitem{LEPTOPS}
+M.~Bengtsson and T.~Sj\"ostrand,
+\newblock Z. Phys. {\bf C}{} {\bf 37},~465~(1988)\relax
+\relax
+\bibitem{Catani:1990eg}
+S.~Catani, M.~Ciafaloni, and F.~Hautmann,
+\newblock Nucl. Phys.{} {\bf B366},~135~(1991)\relax
+\relax
+\bibitem{Pythia61}
+T.~Sjostrand {\em et al.},
+\newblock Comput. Phys. Commun.{} {\bf 135},~238~(2001).
+\newblock Hep-ph/0010017\relax
+\relax
+\bibitem{Hautmann:2008vd}
+F.~Hautmann and H.~Jung,
+\newblock JHEP{} {\bf 10},~113~(2008).
+\newblock \href{http://www.arXiv.org/abs/0805.1049}{{\tt 0805.1049}}\relax
+\relax
+\bibitem{jung-dis04}
+H.~Jung,
+\newblock {\em Un-integrated parton density functions in ccfm}, April 2004.
+\newblock \mbox{DIS 2004}, Strbsk\'e Pleso,~Slovakia, hep-ph/0411287\relax
+\relax
+\bibitem{jung-dis07}
+M.~Hansson and H.~Jung,
+\newblock {\em Towards precision determination of updfs}, 2007.
+\newblock \mbox{DIS 2007}, Munich,
+  \href{http://www.arXiv.org/abs/arXiv:0707.4276 [hep-ph]}{{\tt arXiv:0707.4276
+  [hep-ph]}}\relax
+\relax
+\bibitem{jung-dis03}
+M.~Hansson and H.~Jung,
+\newblock {\em The status of ccfm unintegrated gluon densities}, 23-27 April
+  2003.
+\newblock \mbox{DIS 2003}, St. Petersburg, Russia, hep-ph/0309009\relax
+\relax
+\bibitem{Hautmann:2013tba}
+F.~Hautmann and H.~Jung~(2013).
+\newblock \href{http://www.arXiv.org/abs/1312.7875}{{\tt 1312.7875}}\relax
+\relax
+\bibitem{SMALLXa}
+G.~Marchesini and B.~Webber,
+\newblock Nucl. Phys. {\bf B}{} {\bf 349},~617~(1991)\relax
+\relax
+\bibitem{SMALLXb}
+G.~Marchesini and B.~Webber,
+\newblock Nucl. Phys. {\bf B}{} {\bf 386},~215~(1992)\relax
+\relax
+\bibitem{H1_F2_1996}
+\mbox{H1 Collaboration, S. Aid et al.},
+\newblock Nucl. Phys. {\bf B}{} {\bf 470},~3~(1996).
+\newblock \href{http://www.arXiv.org/abs/96-039,hep-ex/9603004}{{\tt
+  96-039,hep-ex/9603004}}\relax
+\relax
+\bibitem{H1_F2_2001}
+\mbox{H1 Collaboration, C. Adloff et al.},
+\newblock Eur. Phys. J. {\bf C}{} {\bf 21},~33~(2001).
+\newblock \href{http://www.arXiv.org/abs/DESY 00-181, hep-ex/0012053}{{\tt DESY
+  00-181, hep-ex/0012053}}\relax
+\relax
+\bibitem{ZEUS_F2_1996}
+{ ZEUS} Collaboration, \mbox{ZEUS} Collaboration; M. Derrick~et al.,
+\newblock Z. Phys.{} {\bf C72},~399~(1996).
+\newblock \href{http://www.arXiv.org/abs/DESY 96-076, hep-ex/9607002}{{\tt DESY
+  96-076, hep-ex/9607002}}\relax
+\relax
+\bibitem{ZEUS_F2_2001}
+{ ZEUS} Collaboration, \mbox{ZEUS} Collaboration; S. Chekanov~et al.,
+\newblock Eur. Phys. J.{} {\bf C21},~443~(2001).
+\newblock \href{http://www.arXiv.org/abs/DESY 01-064, hep-ex/0105090}{{\tt DESY
+  01-064, hep-ex/0105090}}\relax
+\relax
+\bibitem{Lai:1999wy}
+{ CTEQ} Collaboration, H.~L. Lai {\em et al.},
+\newblock Eur. Phys. J.{} {\bf C12},~375~(2000).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/9903282}{{\tt
+  hep-ph/9903282}}\relax
+\relax
+\bibitem{GRV95}
+M.~Gl\"uck, E.~Reya, and A.~Vogt,
+\newblock Z. Phys. {\bf C}{} {\bf 67},~433~(1995)\relax
+\relax
+\bibitem{Bluemlein}
+J.~Bl\"umlein,
+\newblock {\em On the $k_t$ dependent gluon density of the proton},
+\newblock in {\em Proc. of the Workshop on Deep Inelastic Scattering and QCD},
+  eds.~J.~Laporte and Y.~Sirois.
+\newblock 1995.
+\newblock \mbox{DESY} 95-121 and hep-ph/9506403\relax
+\relax
+\bibitem{baranov_zotov_1999}
+S.~Baranov and N.~Zotov,
+\newblock Phys. Lett. {\bf B}{} {\bf 458},~389~(1999)\relax
+\relax
+\bibitem{baranov_zotov_2000}
+S.~Baranov and N.~Zotov,
+\newblock Phys. Lett. {\bf B}{} {\bf 491},~111~(2000)\relax
+\relax
+\bibitem{martin_stasto}
+J.~Kwiecinski, A.~Martin, and A.~Stasto,
+\newblock Phys. Rev. {\bf D}{} {\bf 56},~3991~(1997)\relax
+\relax
+\bibitem{wuesthoff_golec-biernat}
+K.~Golec-Biernat and M.~Wusthoff,
+\newblock Phys. Rev. {\bf D}{} {\bf 60},~114023~(1999).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/9903358}{{\tt
+  hep-ph/9903358}}\relax
+\relax
+\bibitem{martin_kimber}
+M.~A. Kimber, A.~D. Martin, and M.~G. Ryskin,
+\newblock Phys. Rev.{} {\bf D63},~114027~(2001).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0101348}{{\tt
+  hep-ph/0101348}}\relax
+\relax
+\bibitem{saleev_zotov_a}
+V.~Saleev and N.~Zotov,
+\newblock Mod. Phys. Lett. {\bf A}{} {\bf 9},~151~(1994)\relax
+\relax
+\bibitem{Lipatov:2002tc}
+A.~V. Lipatov and N.~P. Zotov,
+\newblock Eur. Phys. J.{} {\bf C27},~87~(2003).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0210310}{{\tt
+  hep-ph/0210310}}\relax
+\relax
+\bibitem{Baranov:2003at}
+S.~P. Baranov and N.~P. Zotov,
+\newblock J. Phys.{} {\bf G29},~1395~(2003).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0302022}{{\tt
+  hep-ph/0302022}}\relax
+\relax
+\bibitem{Baranov:2002cf}
+S.~P. Baranov,
+\newblock Phys. Rev.{} {\bf D66},~114003~(2002)\relax
+\relax
+\bibitem{Baranov:2011zz}
+S.~Baranov,
+\newblock Phys.Rev.{} {\bf D84},~054012~(2011)\relax
+\relax
+\bibitem{hautmann-higgs}
+F.~Hautmann,
+\newblock Phys. Lett.{} {\bf B535},~159~(2002).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0203140}{{\tt
+  hep-ph/0203140}}\relax
+\relax
+\bibitem{Baranov:2008hj}
+S.~P. Baranov, A.~V. Lipatov, and N.~P. Zotov,
+\newblock Phys. Rev.{} {\bf D78},~014025~(2008).
+\newblock \href{http://www.arXiv.org/abs/0805.4821}{{\tt 0805.4821}}\relax
+\relax
+\bibitem{Deak:2008ky}
+M.~Deak and F.~Schwennsen,
+\newblock JHEP{} {\bf 09},~035~(2008).
+\newblock \href{http://www.arXiv.org/abs/0805.3763}{{\tt 0805.3763}}\relax
+\relax
+\bibitem{Marzani:2008uh}
+S.~Marzani and R.~D. Ball,
+\newblock Nucl. Phys.{} {\bf B814},~246~(2009).
+\newblock \href{http://www.arXiv.org/abs/0812.3602}{{\tt 0812.3602}}\relax
+\relax
+\bibitem{deak}
+M.~Deak, F.~Hautmann, H.~Jung, and K.~Kutak,
+\newblock JHEP{} {\bf 09},~121~(2009).
+\newblock \href{http://www.arXiv.org/abs/0908.0538}{{\tt 0908.0538}}\relax
+\relax
+\bibitem{Eichten:1995ch}
+E.~J. Eichten and C.~Quigg,
+\newblock Phys. Rev.{} {\bf D52},~1726~(1995).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/9503356}{{\tt
+  hep-ph/9503356}}\relax
+\relax
+\bibitem{lhaaccord}
+E.~Boos {\em et al.},
+\newblock {\em Generic user process interface for event generators}, 2001.
+\newblock \href{http://www.arXiv.org/abs/hep-ph/0109068}{{\tt
+  hep-ph/0109068}}\relax
+\relax
+\bibitem{Ingelman_LEPTO65}
+G.~Ingelman, A.~Edin, and J.~Rathsman,
+\newblock Comp. Phys. Comm.{} {\bf 101},~108~(1997).
+\newblock \href{http://www.arXiv.org/abs/hep-ph/9605286}{{\tt
+  hep-ph/9605286}}\relax
+\relax
+\bibitem{bases}
+S.~Kawabata,
+\newblock Comp. Phys. Comm.{} {\bf 88},~309~(1995)\relax
+\relax
+\end{mcbibliography}
