@@ -60,7 +60,7 @@ extern "C" {
 #else
         event=event_hepmc2;
 #endif
-       // rivet->init(*event_hepmc2);
+       // rivet->init(*event);
         return 0;
     }
     int rivetrun_(const int &  id) {

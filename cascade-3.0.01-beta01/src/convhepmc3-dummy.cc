@@ -1,16 +1,16 @@
 #include <stdio.h>
 extern "C" {
    int ncount_hepmc3=0 ;
-   int hepmc3_delete_writer_(const int & position)
+   int hepmc3_delete_writer_(const int &)
     {
         return 0;
         
     }
-    int hepmc3_convert_event_(const int & position)
+    int hepmc3_convert_event_(const int &)
     {
         return 0;
     }
-    int hepmc3_write_event_(const int & position)
+    int hepmc3_write_event_(const int &)
     {
         if ( ncount_hepmc3 < 10) {
             printf(" CASCADE: dummy version of write_event (HEPMC3) is used\n" );
@@ -18,7 +18,7 @@ extern "C" {
         }
         return 0;
     }
-    int hepmc3_clear_event_(const int & position)
+    int hepmc3_clear_event_(const int &)
     {
         return 0;
     }
@@ -26,15 +26,15 @@ extern "C" {
     {
         return 0;
     }
-    int hepmc3_set_hepevt_address_(int* a)
+    int hepmc3_set_hepevt_address_(int*)
     {
         return 0;
     }
-    int hepmc3_set_attribute_int_(const int & position,const int & attval,const char* attname, size_t len)
+    int hepmc3_set_attribute_int_(const int &,const int &,const char*, size_t)
     {
         return 0;
     }
-    int hepmc3_set_attribute_double_(const int & position,const double & attval,const char* attname, size_t len)
+    int hepmc3_set_attribute_double_(const int &,const double &,const char*, size_t)
     {
         return 0;
     }

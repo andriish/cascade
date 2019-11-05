@@ -6,7 +6,7 @@ extern "C" {
                    )
     {
         if ( ncount_hepmc2 < 10) {
-            printf(" RAPGAP: dummy version of convhepmc (HEPMC2) is used\n" );
+            printf(" CASCADE: dummy version of convhepmc (HEPMC2) is used\n" );
             ++ncount_hepmc2;
         }
     }

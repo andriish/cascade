@@ -24,6 +24,7 @@ c	Integer N1,N2
       real sec0, secrm0, sec, secrms
       real val, errval 
       
+      
       Integer IGLU
 	Common/CAGLUON/Iglu
 

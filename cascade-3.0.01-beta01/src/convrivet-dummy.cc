@@ -3,7 +3,7 @@ extern "C" {
     {
         return 0;
     }    
-    int rivetinit_(char* rname1) 
+    int rivetinit_(char*) 
     {
         return 0;
     }
@@ -15,11 +15,11 @@ extern "C" {
     {
         return 0;
     }
-    int rivetadd_(char* ana) 
+    int rivetadd_(char*) 
     {
         return   0;
     }
-    int rivetdone_(char* filename1) 
+    int rivetdone_(char*) 
     {
         return 0;
     }
