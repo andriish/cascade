@@ -18,7 +18,7 @@ bin_PROGRAMS = cascade
 cascade_SOURCES =  casmain.F  drn.F  upevnt.F upinit.F pydata.f
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
-conv_source=
+conv_source=convhepmc-helpers.F
 if NO_HEPMC
    conv_source+=convhepmc-dummy.cc
 else
@@ -59,7 +59,7 @@ libcascade2_la_SOURCES = aalam.F    caps.F      cascha.F    caupevnt.F  dfun.F  
                    capsee.F   cascade.F   cauniglu.F  dfridr.F    elemnz.F \
                    minuts.F   p_semih.F    ryssha.F  xsec1.F xsecqg.F  \
                    meoffjpsi.F  dhfint.F   \
-			 colorflow.F xvq.F mevq.F meqg.F  \
+                   colorflow.F xvq.F mevq.F meqg.F  \
                    mcint.F mcgen.F \
                    xvqq.F mevqq.F ktOrtAmVqNew.F \
                    xsecchi.F meoffchi.F mev.F xv1.F \

@@ -41,6 +41,27 @@
      & pythia6
       Double Precision ScaleFactorFinalShower
       character *512 TMDDensityPath,lheInput
+C
+      character *132 hm2filnam
+      Common/steerhm2/hm2filnam
+      LOGICAL         hm2OUT
+      COMMON /Qhm2LO/ hm2OUT
+
+      character *132 hm3filnam
+      integer hm3filfor
+      Common/steerhm3/hm3filnam,hm3filfor
+      LOGICAL         hm3OUT
+      COMMON /Qhm3LO/ hm3OUT
+
+      character *132 rvtfilnam
+      character *132 rvtrun
+      character *132 rvtana
+      Integer Nrvtana
+      Common/steerrvt/Nrvtana,rvtfilnam,rvtrun,rvtana(50)
+      LOGICAL         rvtOUT,rvtOUT1,rvtOUT2
+      COMMON /QrvtLO/ rvtOUT
+C      
+      
       
       namelist/CASCADE_input/
      & NrEvents,Process_Id,Hadronisation,

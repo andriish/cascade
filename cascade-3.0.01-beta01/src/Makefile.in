@@ -141,18 +141,19 @@ am__libcascade2_la_SOURCES_DIST = aalam.F caps.F cascha.F caupevnt.F \
 	meoffjpsi.F dhfint.F colorflow.F xvq.F mevq.F meqg.F mcint.F \
 	mcgen.F xvqq.F mevqq.F ktOrtAmVqNew.F xsecchi.F meoffchi.F \
 	mev.F xv1.F xsecjj.F meoffjj.F jj_ggf.F jj_me2.F input_steer.F \
-	steer_new.F cas_lheread.F convhepmc-dummy.cc convhepmc.cc \
-	convhepmc3-dummy.cc convhepmc3.cc convrivet-dummy.cc \
-	convrivet.cc tmdlib-dummy.F pythia8frag.cc \
-	pythia8frag-dummy.cc casbran_new.F
+	steer_new.F cas_lheread.F convhepmc-helpers.F \
+	convhepmc-dummy.cc convhepmc.cc convhepmc3-dummy.cc \
+	convhepmc3.cc convrivet-dummy.cc convrivet.cc tmdlib-dummy.F \
+	pythia8frag.cc pythia8frag-dummy.cc casbran_new.F
 @NO_HEPMC_TRUE@am__objects_1 = convhepmc-dummy.lo
 @NO_HEPMC_FALSE@am__objects_2 = convhepmc.lo
 @NO_HEPMC3_TRUE@am__objects_3 = convhepmc3-dummy.lo
 @NO_HEPMC3_FALSE@am__objects_4 = convhepmc3.lo
 @NO_RIVET_TRUE@am__objects_5 = convrivet-dummy.lo
 @NO_RIVET_FALSE@am__objects_6 = convrivet.lo
-am__objects_7 = $(am__objects_1) $(am__objects_2) $(am__objects_3) \
-	$(am__objects_4) $(am__objects_5) $(am__objects_6)
+am__objects_7 = convhepmc-helpers.lo $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
+	$(am__objects_6)
 @NO_TMDLIB_TRUE@am__objects_8 = tmdlib-dummy.lo
 @NO_PYTHIA8_FALSE@am__objects_9 = pythia8frag.lo
 @NO_PYTHIA8_TRUE@am__objects_9 = pythia8frag-dummy.lo
@@ -459,8 +460,9 @@ AUTOMAKE_OPTIONS = subdir-objects
 cascade_SOURCES = casmain.F  drn.F  upevnt.F upinit.F pydata.f
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
-conv_source = $(am__append_1) $(am__append_2) $(am__append_3) \
-	$(am__append_4) $(am__append_5) $(am__append_6)
+conv_source = convhepmc-helpers.F $(am__append_1) $(am__append_2) \
+	$(am__append_3) $(am__append_4) $(am__append_5) \
+	$(am__append_6)
 @NO_TMDLIB_TRUE@tmdlib_source = tmdlib-dummy.F
 @NO_PYTHIA8_FALSE@pythia8_source = pythia8frag.cc
 @NO_PYTHIA8_TRUE@pythia8_source = pythia8frag-dummy.cc
@@ -480,7 +482,7 @@ libcascade2_la_SOURCES = aalam.F    caps.F      cascha.F    caupevnt.F  dfun.F  
                    capsee.F   cascade.F   cauniglu.F  dfridr.F    elemnz.F \
                    minuts.F   p_semih.F    ryssha.F  xsec1.F xsecqg.F  \
                    meoffjpsi.F  dhfint.F   \
-			 colorflow.F xvq.F mevq.F meqg.F  \
+                   colorflow.F xvq.F mevq.F meqg.F  \
                    mcint.F mcgen.F \
                    xvqq.F mevqq.F ktOrtAmVqNew.F \
                    xsecchi.F meoffchi.F mev.F xv1.F \

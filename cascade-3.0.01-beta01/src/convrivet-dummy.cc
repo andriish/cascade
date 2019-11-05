@@ -1,4 +1,8 @@
 extern "C" {
+    int rivetinterfaceversion_()
+    {
+        return 0;
+    }    
     int rivetinit_(char* rname1) 
     {
         return 0;
