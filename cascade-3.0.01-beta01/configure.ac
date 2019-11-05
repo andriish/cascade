@@ -8,12 +8,7 @@ AC_INIT([cascade],VERSION_NUMBER, [hannes.jung@desy.de])
 AC_CONFIG_MACRO_DIRS([m4])
 AM_INIT_AUTOMAKE([-Wall -Werror foreign])
 ## Checks for programs.
-##AC_PROG_F77([g77 gfortran ])
-##AC_FC_LIBRARY_LDFLAGS
-# Check for programs 
-# here is a trick to prefer 
-#   gfortran for gcc4 and higher 
-#   and g77 for gcc3 and lower 
+
 flist="gfortran g77 f77" 
 if [[[ "$(gcc -dumpversion | cut -d . -f 1)" < "4" ]]] ; then 
   flist="g77 f77 gfortran" 
@@ -49,7 +44,7 @@ AM_CONDITIONAL(BUILD_DOCS, test "x$build_docs" = "xyes" \
 
 AC_MSG_CHECKING([for GSL installation])
 AC_ARG_WITH([gsl],[AS_HELP_STRING([--with-gsl],[path to GSL installation])],[:],[with_gsl=${GSL_DIR}])
-AS_IF([test "x$with_gsl" != "xno" && test "x`ls $with_gsl/lib/libgsl*`" != "x" ], [AC_SUBST(GSL_DIR,[$with_gsl])],
+AS_IF([test "x$with_gsl" != "xno" && [ test "x`ls $with_gsl/lib/libgsl*`" != "x"||test "x`ls $with_gsl/lib64/libgsl*`" != "x" ] ], [AC_SUBST(GSL_DIR,[$with_gsl])],
       AC_MSG_ERROR([Can't find $with_gsl/lib -lgsl -lgslcblas libraries.
       Specify correct path to GSL installation: --with-gsl=/path/to/gsl]) ; exit 1)
 GSL_CFLAGS=`${GSL_DIR}/bin/gsl-config --cflags`
@@ -70,12 +65,12 @@ AC_MSG_RESULT([Using $BOOST_CFLAGS ])
 
 AC_MSG_CHECKING([for Pythia 6 libraries])
 AC_ARG_WITH([pythia6],[AS_HELP_STRING([--with-pythia6],[path to Pythia6 installation])],[:],[with_pythia6=${PYTHIA6_DIR}])        
-AS_IF([test "x$with_pythia6" != "xno" && test "x`ls $with_pythia6/lib/libpythia6.*`" != "x" ], [AC_SUBST(PYTHIA6_DIR,[$with_pythia6])],
-      AC_MSG_ERROR([Can't find $with_pythia6/lib/libpythia6.* libraries. 
+AS_IF([test "x$with_pythia6" != "xno" && [ test "x`ls $with_pythia6/lib/libpythia6.*`" != "x" || test "x`ls $with_pythia6/lib64/libpythia6.*`" != "x"] ], [AC_SUBST(PYTHIA6_DIR,[$with_pythia6])],
+      AC_MSG_ERROR([Cannot find $with_pythia6/lib/libpythia6.* or $with_pythia6/lib64/libpythia6.* libraries. 
       Specify correct path to Pythia 6 installation: --with-pythia6=/path/to/pythia6]) ; exit 1)
 AC_SUBST([PYTHIA_SOURCE], ["$with_pythia6/lib"])
-AC_SUBST([PYTHIALIB], ["-L$with_pythia6/lib -lpythia6 -lpythia6_dummy "])
-AC_MSG_RESULT([Using -L$with_pythia6/lib -lpythia6 -lpythia6_dummy  ])
+AC_SUBST([PYTHIALIB], ["-L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy "])
+AC_MSG_RESULT([Using -L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy  ])
  
     
 AC_MSG_CHECKING([for Pythia8])
@@ -91,10 +86,10 @@ AM_CONDITIONAL([NO_PYTHIA8],test $no_pythia8)
 
 AC_MSG_CHECKING([for LHAPDF])
 AC_ARG_WITH([lhapdf],[AS_HELP_STRING([--with-lhapdf],[path to LHAPDF installation])],[:],[with_lhapdf=${LHAPDF_DIR}])
-AS_IF([test "x$with_lhapdf" != "xno" && test "x`ls $with_lhapdf/lib/libLHAPDF.*`" != "x" ], [AC_SUBST(LHAPDF_DIR,[$with_lhapdf])],
-      AC_MSG_ERROR([Can't find $with_lhapdf/lib/libLHAPDF.* libraries.
+AS_IF([test "x$with_lhapdf" != "xno" && [ test "x`ls $with_lhapdf/lib/libLHAPDF.*`" != "x"||  test "x`ls $with_lhapdf/lib64/libLHAPDF.*`" != "x" ] ], [AC_SUBST(LHAPDF_DIR,[$with_lhapdf])],
+      AC_MSG_ERROR([Cannot find $with_lhapdf/lib/libLHAPDF.* or $with_lhapdf/lib64/libLHAPDF.* libraries.
       Specify correct path to LHAPDF installation: --with-lhapdf=/path/to/lhapdf]) ; exit 1)
-  AC_SUBST([PDFLIB], ["-L$with_lhapdf/lib -lLHAPDF "])
+  AC_SUBST([PDFLIB], ["-L$with_lhapdf/lib -L$with_lhapdf/lib64 -lLHAPDF "])
   AC_MSG_RESULT([Using $PDFLIB ])
 
 
@@ -113,26 +108,52 @@ AM_CONDITIONAL([NO_TMDLIB],test $no_tmdlib)
 AC_MSG_CHECKING([for HEPMC installation])
 AC_ARG_WITH([hepmc],
    [AS_HELP_STRING([--with-hepmc], [path to HEPMC installation])],[:],[with_hepmc=${HEPMC}])
-AS_IF([test "x$with_hepmc" != "xno" && test "x`ls $with_hepmc/lib/libHepMC.*`" != "x" ], [AC_SUBST(HEPMC,[$with_hepmc])],
-        AC_MSG_RESULT([Can't find $with_hepmc/lib/libHepMC.* libraries. 
-        Specify correct path to HEPMC installation: --with-hepmc=/path/to/hepmc]) ; AC_MSG_RESULT([Building CASCADE without HepMC]); AC_SUBST([no_hepmc], [1]))
+AS_IF([test "x$with_hepmc" != "xno" && [ test "x`ls $with_hepmc/lib/libHepMC.*`" != "x" ||  test "x`ls $with_hepmc/lib64/libHepMC.*`" != "x"] ], [AC_SUBST(HEPMC,[$with_hepmc])],
+        AC_MSG_RESULT([Cannot find $with_hepmc/lib/libHepMC.* or $with_hepmc/lib64/libHepMC.* libraries. 
+        Specify correct path to HEPMC installation: --with-hepmc=/path/to/hepmc]) ; AC_MSG_RESULT([Building RAPGAP without HepMC]); AC_SUBST([no_hepmc], [1]))
 if test x$no_hepmc == x; then     
-  AC_SUBST([HEPMCLIB], ["-L$with_hepmc/lib -lHepMC -lHepMCfio"])
+  AC_SUBST([HEPMCLIB], ["-L$with_hepmc/lib -L$with_hepmc/lib64 -lHepMC -lHepMCfio"])
   AC_MSG_RESULT([Building CASCADE with HepMC: $HEPMCLIB])
 fi  
 AM_CONDITIONAL([NO_HEPMC],test $no_hepmc)     
-     
+
+
+AC_MSG_CHECKING([for HEPMC3 installation])
+AC_ARG_WITH([hepmc3],
+   [AS_HELP_STRING([--with-hepmc3], [path to HEPMC3 installation])],[:],[with_hepmc3=${HEPMC}])
+AS_IF([test "x$with_hepmc3" != "xno" && [ test "x`ls $with_hepmc3/lib/libHepMC3.*`" != "x" ||  test "x`ls $with_hepmc3/lib64/libHepMC3.*`" != "x"] ], [AC_SUBST(HEPMC3,[$with_hepmc3])],
+        AC_MSG_RESULT([Cannot find $with_hepmc3/lib/libHepMC3.* or $with_hepmc3/lib64/libHepMC3.* libraries. 
+        Specify correct path to HEPMC3 installation: --with-hepmc3=/path/to/hepmc3]) ; AC_MSG_RESULT([Building RAPGAP without HepMC3]); AC_SUBST([no_hepmc3], [1]))
+if test x$no_hepmc3 == x; then     
+  AC_SUBST([HEPMC3LIB], ["-L$with_hepmc3/lib -L$with_hepmc3/lib64 -lHepMC3"])
+  CXXFLAGS="${CXXFLAGS} -std=c++11"
+  AC_MSG_RESULT([Building RAPGAP with HepMC3: $HEPMC3LIB])
+fi  
+AM_CONDITIONAL([NO_HEPMC3],test $no_hepmc3)     
+
+
+
+AC_MSG_CHECKING([for Rivet installation])
+AC_ARG_WITH([rivet],
+   [AS_HELP_STRING([--with-rivet], [path to RIVET installation])],[:],[with_rivet=${HEPMC}])
+AS_IF([test "x$with_rivet" != "xno" && [ test "x`ls $with_rivet/lib/libRivet.*`" != "x" ||  test "x`ls $with_rivet/lib64/libRivet.*`" != "x"] ], [AC_SUBST(RIVET,[$with_rivet])],
+        AC_MSG_RESULT([Cannot find $with_rivet/lib/libRivet.* or $with_rivet/lib64/libRivet.* libraries. 
+        Specify correct path to RIVET installation: --with-rivet=/path/to/rivet]) ; AC_MSG_RESULT([Building RAPGAP without Rivet]); AC_SUBST([no_rivet], [1]))
+if test x$no_rivet == x; then     
+  AC_SUBST([RIVETLIB], ["-L$with_rivet/lib -L$with_rivet/lib64 -lRivet"])
+  CXXFLAGS="${CXXFLAGS} -std=c++11 -g"
+  AC_MSG_RESULT([Building RAPGAP with Rivet: $RIVETLIB])
+fi  
+AM_CONDITIONAL([NO_RIVET],test $no_rivet)     
+
+   
 if test "x$F77" = "xg77"; then
   AC_SUBST([MYFFLAGS], ["-fno-automatic -finit-local-zero -fno-backslash -fno-globals -ff90 -fpic -ffixed-line-length-132"])
-  AC_MSG_RESULT([Using g77 with FLAGS = $MYFFLAGS ])
+  AC_MSG_RESULT([using g77 with FLAGS = $MYFFLAGS ])
 else
 #  AC_SUBST([MYFFLAGS], ["-fno-automatic -fno-backslash -fpic"]) 
-#  AC_SUBST([MYFFLAGS], ["-O0 -fbounds-check -fno-automatic -fno-backslash -fpic -ffixed-line-length-132"]) 
   AC_SUBST([MYFFLAGS], ["-O0 -std=legacy -fno-automatic -fno-backslash -fpic -ffixed-line-length-132"]) 
-#  AC_SUBST([MYFFLAGS], ["-O0 -fno-automatic -fno-backslash -ffixed-line-length-132"]) 
-#  AC_SUBST([MYFFLAGS], ["-O0 -fno-backslash -ffixed-line-length-132"]) 
-#  AC_SUBST([MYFFLAGS], ["-O0 -std=legacy -ffixed-line-length-132"]) 
-  AC_MSG_RESULT([Using gfortran with FLAGS = $MYFFLAGS ])
+  AC_MSG_RESULT([using gfortran with FLAGS = $MYFFLAGS ])
 fi
 
 
@@ -147,14 +168,14 @@ fi
 
 AC_SUBST(VERSION)
 
-  AC_CONFIG_FILES([
-  Makefile
-   include/Makefile
-   misc/Makefile
-   bases51/Makefile
-   src/Makefile
-   data/Makefile
-   manual/Makefile 
+AC_CONFIG_FILES([
+ Makefile
+ include/Makefile
+ misc/Makefile
+ bases51/Makefile
+ src/Makefile
+ data/Makefile
+ manual/Makefile 
 ])
 
 AC_OUTPUT

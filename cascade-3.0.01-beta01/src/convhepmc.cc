@@ -1,8 +1,3 @@
-//#include <stdio.h>
-//#include <stdlib.h>
-//#include <string.h>
-//#include <math.h>
-//#include <cmath>
 #include <stdio.h>
 #include <string.h>
 #include <cstring>
@@ -15,7 +10,6 @@
 #include "HepMC/HEPEVT_Wrapper.h"
 #include "PythiaHelper.h"
 #include "boost/algorithm/string/trim.hpp"
-//#include "HepMC/WeightContainer.h"
 
 using namespace std;
 
@@ -27,55 +21,46 @@ extern "C" {
 #define cahepmcout cahepmcout_
 
 extern "C" {   
-    // Instantiate an IO strategy for reading from HEPEVT.
-       HepMC::IO_HEPEVT hepevtio;
-       
-       int ncount = 0;   
-       HepMC::GenCrossSection cross;
+    HepMC::GenEvent* event_hepmc2=NULL;
+    HepMC::IO_HEPEVT hepevent_hepmc2io;
+    HepMC::IO_GenEvent* ascii_io=NULL;
 
-//void convhepmc_(int & ievent, int & iproc, double & xsec){
-void convhepmc_(int & ievent, int & iproc, double & weight, double & xsec, double & xsece, int & id1pdf, int & id2pdf, double & x1pdf, double & x2pdf, double & QFac, double & pdf1, double & pdf2 ){
+    int convhepmc_(int & ievent, int & iproc, double & weight, double & xsec, double & xsece, int & id1pdf, int & id2pdf, double & x1pdf, double & x2pdf, double & QFac, double & pdf1, double & pdf2 ){
       
        // with the static command, called only once
-       static char * outfile = cahepmcout.hepmcout+'\0' ;
-       static HepMC::IO_GenEvent ascii_io(outfile ,std::ios::out); 
+      static char * outfile = cahepmcout.hepmcout+'\0' ;
+      ascii_io= new  HepMC::IO_GenEvent(outfile ,std::ios::out); 
+    
 
-      
-//       cout << " convhepmc=" << outfile << "$end"<<endl;
-      if ( ncount < 10) {
-        if (outfile!=NULL) { cout << " convhepmc: filename = " <<  outfile << endl;}
-          else { cout << "  convhepmc: NO filename set " <<endl; 
-          return ;}
-          ++ncount;
-      }
-      
-
+      hepevent_hepmc2io.set_trust_mothers_before_daughters( true );
    // pythia pyhepc routine convert common PYJETS in common HEPEVT
-	call_pyhepc( 1 );
-      //HepMC::HEPEVT_Wrapper::print_hepevt();
-      HepMC::GenEvent* evt = hepevtio.read_next_event();
-      //HepMC::IO_HEPEVT::print_inconsistency_errors();
-      
-	// HepMC::HEPEVT_Wrapper::check_hepevt_consistency();
-      // HepMC::IO_HEPEVT::set_trust_mothers_before_daughters( true );
-      //   from version 2.06.09 on:      
-      //      evt->define_units( HepMC::Units::GEV, HepMC::Units::MM );
-      evt->use_units(HepMC::Units::GEV, HepMC::Units::MM);
-      evt->set_event_number(ievent);
-      evt->set_signal_process_id(iproc);
-      evt->weights().push_back(weight);
-      //      std::cout << " ievent " << ievent << " iproc " << iproc << " xsec " <<xsec<< std::endl;
-      // set cross section information set_cross_sectio( xsec, xsec_err)
-      const double xsecval = xsec;
-      const double xsecerr = xsece ;
-      cross.set_cross_section( xsecval, xsecerr );
-	evt->set_cross_section( cross );
+      call_pyhepc( 1 );
+      HepMC::GenEvent* event_hepmc2 = hepevtio.read_next_event();
+      event_hepmc2->use_units(HepMC::Units::GEV, HepMC::Units::MM);
+      event_hepmc2->set_event_number(ievent);
+      event_hepmc2->set_signal_process_id(iproc);
+      event_hepmc2->set_mpi(-1);
+//      event_hepmc2->set_event_scale(q2pdfeval);
+      event_hepmc2->set_alphaQED(-1);
+      event_hepmc2->set_alphaQCD(-1);
+      //Set beams
+      event_hepmc2->barcode_to_particle(1)->set_status(4);
+      event_hepmc2->barcode_to_particle(2)->set_status(4);
       // Store PDF information.
-      // evt->set_pdf_info(id1pdf, id2pdf, x1pdf, x2pdf, QFac, pdf1, pdf2 );
       HepMC::PdfInfo pdf( id1pdf, id2pdf, x1pdf, x2pdf, QFac, pdf1, pdf2, 230, 230);
-      evt->set_pdf_info(pdf);      // write the event out to the ascii file
-	ascii_io << evt;
+      event_hepmc2->set_pdf_info(pdf);      // write the event out to the ascii file
 
-    delete evt;
-   }
+        event_hepmc2->weights().push_back(weight);
+
+        // set cross section information set_cross_sectio( xsec, xsec_err)
+        const double xsecval = xsec;
+        const double xsecerr = xsece;
+        HepMC::GenCrossSection cross;
+        cross.set_cross_section( xsecval, xsecerr );
+        event_hepmc2->set_cross_section( cross );
+        // write the event out to the ascii file
+        if (ascii_io)
+        (*ascii_io) << event_hepmc2;
+    return 0;
+    }
 }
