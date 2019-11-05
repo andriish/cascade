@@ -653,21 +653,21 @@ NO_HEPMC_TRUE
 HEPMCLIB
 HEPMC
 no_hepmc
+PDFLIB
+LHAPDF_DIR
+PYTHIALIB
+PYTHIA_SOURCE
+PYTHIA6_DIR
 NO_TMDLIB_FALSE
 NO_TMDLIB_TRUE
 TMDLIB
 TMDLIB_DIR
 no_tmdlib
-PDFLIB
-LHAPDF_DIR
 NO_PYTHIA8_FALSE
 NO_PYTHIA8_TRUE
 PYTHIA8LIB
 PYTHIA8_DIR
 no_pythia8
-PYTHIALIB
-PYTHIA_SOURCE
-PYTHIA6_DIR
 BOOST_CFLAGS
 GSL_LIB
 GSL_CFLAGS
@@ -817,10 +817,10 @@ with_sysroot
 enable_libtool_lock
 with_gsl
 with_boost
-with_pythia6
 with_pythia8
-with_lhapdf
 with_tmdlib
+with_pythia6
+with_lhapdf
 with_hepmc
 with_hepmc3
 with_rivet
@@ -1482,10 +1482,10 @@ Optional Packages:
                         (or the compiler's sysroot if not specified).
   --with-gsl              path to GSL installation
   --with-boost            path to BOOST installation
-  --with-pythia6          path to Pythia6 installation
   --with-pythia8          path to Pythia8 installation
-  --with-lhapdf           path to LHAPDF installation
   --with-tmdlib           path to TMDlib installation
+  --with-pythia6          path to Pythia6 installation
+  --with-lhapdf           path to LHAPDF installation
   --with-hepmc            path to HEPMC installation
   --with-hepmc3           path to HEPMC3 installation
   --with-rivet            path to RIVET installation
@@ -21917,30 +21917,6 @@ fi
 $as_echo "Using $BOOST_CFLAGS " >&6; }
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Pythia 6 libraries" >&5
-$as_echo_n "checking for Pythia 6 libraries... " >&6; }
-
-# Check whether --with-pythia6 was given.
-if test "${with_pythia6+set}" = set; then :
-  withval=$with_pythia6; :
-else
-  with_pythia6=${PYTHIA6_DIR}
-fi
-
-if test "x$with_pythia6" != "xno" &&  test "x`ls $with_pythia6/lib/libpythia6.*`" != "x" || test "x`ls $with_pythia6/lib64/libpythia6.*`" != "x" ; then :
-  PYTHIA6_DIR=$with_pythia6
-
-else
-  as_fn_error $? "Cannot find $with_pythia6/lib/libpythia6.* or $with_pythia6/lib64/libpythia6.* libraries.
-      Specify correct path to Pythia 6 installation: --with-pythia6=/path/to/pythia6" "$LINENO" 5 ; exit 1
-fi
-PYTHIA_SOURCE="$with_pythia6/lib"
-
-PYTHIALIB="-L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy "
-
-{ $as_echo "$as_me:${as_lineno-$LINENO}: result: Using -L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy  " >&5
-$as_echo "Using -L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy  " >&6; }
-
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for Pythia8" >&5
 $as_echo_n "checking for Pythia8... " >&6; }
@@ -21978,29 +21954,6 @@ else
 fi
 
 
-{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LHAPDF" >&5
-$as_echo_n "checking for LHAPDF... " >&6; }
-
-# Check whether --with-lhapdf was given.
-if test "${with_lhapdf+set}" = set; then :
-  withval=$with_lhapdf; :
-else
-  with_lhapdf=${LHAPDF_DIR}
-fi
-
-if test "x$with_lhapdf" != "xno" &&  test "x`ls $with_lhapdf/lib/libLHAPDF.*`" != "x"||  test "x`ls $with_lhapdf/lib64/libLHAPDF.*`" != "x"  ; then :
-  LHAPDF_DIR=$with_lhapdf
-
-else
-  as_fn_error $? "Cannot find $with_lhapdf/lib/libLHAPDF.* or $with_lhapdf/lib64/libLHAPDF.* libraries.
-      Specify correct path to LHAPDF installation: --with-lhapdf=/path/to/lhapdf" "$LINENO" 5 ; exit 1
-fi
-  PDFLIB="-L$with_lhapdf/lib -L$with_lhapdf/lib64 -lLHAPDF "
-
-  { $as_echo "$as_me:${as_lineno-$LINENO}: result: Using $PDFLIB " >&5
-$as_echo "Using $PDFLIB " >&6; }
-
-
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for TMDlib" >&5
 $as_echo_n "checking for TMDlib... " >&6; }
 
@@ -22036,6 +21989,53 @@ else
   NO_TMDLIB_FALSE=
 fi
 
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for Pythia 6 libraries" >&5
+$as_echo_n "checking for Pythia 6 libraries... " >&6; }
+
+# Check whether --with-pythia6 was given.
+if test "${with_pythia6+set}" = set; then :
+  withval=$with_pythia6; :
+else
+  with_pythia6=${PYTHIA6_DIR}
+fi
+
+if test "x$with_pythia6" != "xno" &&  test "x`ls $with_pythia6/lib/libpythia6.*`" != "x" || test "x`ls $with_pythia6/lib64/libpythia6.*`" != "x" ; then :
+  PYTHIA6_DIR=$with_pythia6
+
+else
+  as_fn_error $? "Cannot find $with_pythia6/lib/libpythia6.* or $with_pythia6/lib64/libpythia6.* libraries.
+      Specify correct path to Pythia 6 installation: --with-pythia6=/path/to/pythia6" "$LINENO" 5 ; exit 1
+fi
+PYTHIA_SOURCE="$with_pythia6/lib"
+
+PYTHIALIB="-L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy "
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: result: Using -L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy  " >&5
+$as_echo "Using -L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy  " >&6; }
+
+
+{ $as_echo "$as_me:${as_lineno-$LINENO}: checking for LHAPDF" >&5
+$as_echo_n "checking for LHAPDF... " >&6; }
+
+# Check whether --with-lhapdf was given.
+if test "${with_lhapdf+set}" = set; then :
+  withval=$with_lhapdf; :
+else
+  with_lhapdf=${LHAPDF_DIR}
+fi
+
+if test "x$with_lhapdf" != "xno" &&  test "x`ls $with_lhapdf/lib/libLHAPDF.*`" != "x"||  test "x`ls $with_lhapdf/lib64/libLHAPDF.*`" != "x"  ; then :
+  LHAPDF_DIR=$with_lhapdf
+
+else
+  as_fn_error $? "Cannot find $with_lhapdf/lib/libLHAPDF.* or $with_lhapdf/lib64/libLHAPDF.* libraries.
+      Specify correct path to LHAPDF installation: --with-lhapdf=/path/to/lhapdf" "$LINENO" 5 ; exit 1
+fi
+  PDFLIB="-L$with_lhapdf/lib -L$with_lhapdf/lib64 -lLHAPDF "
+
+  { $as_echo "$as_me:${as_lineno-$LINENO}: result: Using $PDFLIB " >&5
+$as_echo "Using $PDFLIB " >&6; }
 
 
 { $as_echo "$as_me:${as_lineno-$LINENO}: checking for HEPMC installation" >&5
@@ -22158,7 +22158,6 @@ if test "x$F77" = "xg77"; then
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: using g77 with FLAGS = $MYFFLAGS " >&5
 $as_echo "using g77 with FLAGS = $MYFFLAGS " >&6; }
 else
-#  AC_SUBST([MYFFLAGS], ["-fno-automatic -fno-backslash -fpic"])
   MYFFLAGS="-O0 -std=legacy -fno-automatic -fno-backslash -fpic -ffixed-line-length-132"
 
   { $as_echo "$as_me:${as_lineno-$LINENO}: result: using gfortran with FLAGS = $MYFFLAGS " >&5

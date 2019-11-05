@@ -35,7 +35,7 @@ extern "C" {
       hepevent_hepmc2io.set_trust_mothers_before_daughters( true );
    // pythia pyhepc routine convert common PYJETS in common HEPEVT
       call_pyhepc( 1 );
-      HepMC::GenEvent* event_hepmc2 = hepevtio.read_next_event();
+      HepMC::GenEvent* event_hepmc2 = hepevent_hepmc2io.read_next_event();
       event_hepmc2->use_units(HepMC::Units::GEV, HepMC::Units::MM);
       event_hepmc2->set_event_number(ievent);
       event_hepmc2->set_signal_process_id(iproc);

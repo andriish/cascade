@@ -62,15 +62,6 @@ AS_IF([test "x$with_boost" != "xno" && test "x`ls $with_boost/boost/shared_ptr.*
       Specify correct path to BOOST installation: --with-boost=/path/to/boost]) ; exit 1)
 AC_MSG_RESULT([Using $BOOST_CFLAGS ])
 
-
-AC_MSG_CHECKING([for Pythia 6 libraries])
-AC_ARG_WITH([pythia6],[AS_HELP_STRING([--with-pythia6],[path to Pythia6 installation])],[:],[with_pythia6=${PYTHIA6_DIR}])        
-AS_IF([test "x$with_pythia6" != "xno" && [ test "x`ls $with_pythia6/lib/libpythia6.*`" != "x" || test "x`ls $with_pythia6/lib64/libpythia6.*`" != "x"] ], [AC_SUBST(PYTHIA6_DIR,[$with_pythia6])],
-      AC_MSG_ERROR([Cannot find $with_pythia6/lib/libpythia6.* or $with_pythia6/lib64/libpythia6.* libraries. 
-      Specify correct path to Pythia 6 installation: --with-pythia6=/path/to/pythia6]) ; exit 1)
-AC_SUBST([PYTHIA_SOURCE], ["$with_pythia6/lib"])
-AC_SUBST([PYTHIALIB], ["-L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy "])
-AC_MSG_RESULT([Using -L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy  ])
  
     
 AC_MSG_CHECKING([for Pythia8])
@@ -84,15 +75,6 @@ if test x$no_pythia8 == x; then
 fi  
 AM_CONDITIONAL([NO_PYTHIA8],test $no_pythia8)     
 
-AC_MSG_CHECKING([for LHAPDF])
-AC_ARG_WITH([lhapdf],[AS_HELP_STRING([--with-lhapdf],[path to LHAPDF installation])],[:],[with_lhapdf=${LHAPDF_DIR}])
-AS_IF([test "x$with_lhapdf" != "xno" && [ test "x`ls $with_lhapdf/lib/libLHAPDF.*`" != "x"||  test "x`ls $with_lhapdf/lib64/libLHAPDF.*`" != "x" ] ], [AC_SUBST(LHAPDF_DIR,[$with_lhapdf])],
-      AC_MSG_ERROR([Cannot find $with_lhapdf/lib/libLHAPDF.* or $with_lhapdf/lib64/libLHAPDF.* libraries.
-      Specify correct path to LHAPDF installation: --with-lhapdf=/path/to/lhapdf]) ; exit 1)
-  AC_SUBST([PDFLIB], ["-L$with_lhapdf/lib -L$with_lhapdf/lib64 -lLHAPDF "])
-  AC_MSG_RESULT([Using $PDFLIB ])
-
-
 AC_MSG_CHECKING([for TMDlib])
 AC_ARG_WITH([tmdlib],[AS_HELP_STRING([--with-tmdlib],[path to TMDlib installation])],[:],[with_tmdlib=${TMDLIB_DIR}])
 AS_IF([test "x$with_tmdlib" != "xno" && test "x`ls $with_tmdlib/lib/libTMDlib.*`" != "x" ], [AC_SUBST(TMDLIB_DIR,[$with_tmdlib])],
@@ -103,6 +85,24 @@ if test x$no_tmdlib == x; then
   AC_MSG_RESULT([Using $TMDLIB ])
 fi  
 AM_CONDITIONAL([NO_TMDLIB],test $no_tmdlib)     
+
+AC_MSG_CHECKING([for Pythia 6 libraries])
+AC_ARG_WITH([pythia6],[AS_HELP_STRING([--with-pythia6],[path to Pythia6 installation])],[:],[with_pythia6=${PYTHIA6_DIR}])        
+AS_IF([test "x$with_pythia6" != "xno" && [ test "x`ls $with_pythia6/lib/libpythia6.*`" != "x" || test "x`ls $with_pythia6/lib64/libpythia6.*`" != "x"] ], [AC_SUBST(PYTHIA6_DIR,[$with_pythia6])],
+      AC_MSG_ERROR([Cannot find $with_pythia6/lib/libpythia6.* or $with_pythia6/lib64/libpythia6.* libraries. 
+      Specify correct path to Pythia 6 installation: --with-pythia6=/path/to/pythia6]) ; exit 1)
+AC_SUBST([PYTHIA_SOURCE], ["$with_pythia6/lib"])
+AC_SUBST([PYTHIALIB], ["-L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy "])
+AC_MSG_RESULT([Using -L$with_pythia6/lib -L$with_pythia6/lib64 -lpythia6 -lpythia6_dummy  ])
+ 
+
+AC_MSG_CHECKING([for LHAPDF])
+AC_ARG_WITH([lhapdf],[AS_HELP_STRING([--with-lhapdf],[path to LHAPDF installation])],[:],[with_lhapdf=${LHAPDF_DIR}])
+AS_IF([test "x$with_lhapdf" != "xno" && [ test "x`ls $with_lhapdf/lib/libLHAPDF.*`" != "x"||  test "x`ls $with_lhapdf/lib64/libLHAPDF.*`" != "x" ] ], [AC_SUBST(LHAPDF_DIR,[$with_lhapdf])],
+      AC_MSG_ERROR([Cannot find $with_lhapdf/lib/libLHAPDF.* or $with_lhapdf/lib64/libLHAPDF.* libraries.
+      Specify correct path to LHAPDF installation: --with-lhapdf=/path/to/lhapdf]) ; exit 1)
+  AC_SUBST([PDFLIB], ["-L$with_lhapdf/lib -L$with_lhapdf/lib64 -lLHAPDF "])
+  AC_MSG_RESULT([Using $PDFLIB ])
 
 
 AC_MSG_CHECKING([for HEPMC installation])
@@ -151,7 +151,6 @@ if test "x$F77" = "xg77"; then
   AC_SUBST([MYFFLAGS], ["-fno-automatic -finit-local-zero -fno-backslash -fno-globals -ff90 -fpic -ffixed-line-length-132"])
   AC_MSG_RESULT([using g77 with FLAGS = $MYFFLAGS ])
 else
-#  AC_SUBST([MYFFLAGS], ["-fno-automatic -fno-backslash -fpic"]) 
   AC_SUBST([MYFFLAGS], ["-O0 -std=legacy -fno-automatic -fno-backslash -fpic -ffixed-line-length-132"]) 
   AC_MSG_RESULT([using gfortran with FLAGS = $MYFFLAGS ])
 fi

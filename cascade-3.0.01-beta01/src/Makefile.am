@@ -18,17 +18,25 @@ bin_PROGRAMS = cascade
 cascade_SOURCES =  casmain.F  drn.F  upevnt.F upinit.F pydata.f
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
-
+conv_source=
 if NO_HEPMC
-   conv_source=convhepmc-dummy.cc
+   conv_source+=convhepmc-dummy.cc
 else
-   conv_source=convhepmc.cc
+   conv_source+=convhepmc.cc
 endif
-
+if NO_HEPMC3
+conv_source +=convhepmc3-dummy.cc 
+else
+conv_source +=convhepmc3.cc 
+endif
 if NO_TMDLIB
    tmdlib_source=tmdlib-dummy.F
 endif
-
+if NO_RIVET
+conv_source += convrivet-dummy.cc 
+else
+conv_source += convrivet.cc 
+endif
 if NO_PYTHIA8
    pythia8_source=pythia8frag-dummy.cc
 else
@@ -62,6 +70,6 @@ libcascade2_la_SOURCES = aalam.F    caps.F      cascha.F    caupevnt.F  dfun.F  
 
 
 cascade_LDADD =  ./libcascade2.la ../bases51/libbases.la \
-                $(HEPMCLIB) $(PYTHIALIB) $(TMDLIB) $(PDFLIB)  $(GSL_LIB) $(PYTHIA8LIB) ../misc/libmycern.la -lstdc++ -lm
+                $(HEPMCLIB) $(HEPMC3LIB) $(RIVETLIB) $(PYTHIALIB) $(TMDLIB) $(PDFLIB)  $(GSL_LIB) $(PYTHIA8LIB) ../misc/libmycern.la -lstdc++ -lm
                 
 	
