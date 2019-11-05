@@ -49,6 +49,7 @@ C
 
       character *132 hm3filnam
       integer hm3filfor
+
       Common/steerhm3/hm3filnam,hm3filfor
       LOGICAL         hm3OUT
       COMMON /Qhm3LO/ hm3OUT
@@ -56,13 +57,17 @@ C
       character *132 rvtfilnam
       character *132 rvtrun
       character *132 rvtana
+
       Integer Nrvtana
       Common/steerrvt/Nrvtana,rvtfilnam,rvtrun,rvtana(50)
       LOGICAL         rvtOUT,rvtOUT1,rvtOUT2
       COMMON /QrvtLO/ rvtOUT
 C      
       
-      
+      LOGICAL HepMC2OUT,  HepMC3OUT,  RivetOUT
+      character *132 HepMC2File,  HepMC3File  
+      character *132 RivetFile,RivetAnalyses(50), RivetRun
+      integer HepMC3Format
       namelist/CASCADE_input/
      & NrEvents,Process_Id,Hadronisation,
      & SpaceShower,SpaceShowerOrderAlphas,
@@ -72,7 +77,13 @@ C
      & EnergyShareRemnant,Remnant,
      & lheHasOnShellPartons,lheReweightTMD,lheWeightId,lheScale,
      & pythia6,
-     & TMDDensityPath,lheInput
+     & TMDDensityPath,lheInput,
+     & HepMC2File,  HepMC3File,  RivetFile,
+     & HepMC2OUT,  HepMC3OUT,  RivetOUT,
+     & HepMC3Format,
+     & RivetAnalyses, RivetRun
+       
+
       
       NrEvents=Nevent
       Process_Id  =Ipro 
@@ -101,6 +112,20 @@ c ifin = defintion of scale for final state shower
 c      read (5,NML=CASCADE_input,END=141,ERR=42)
       read (5,NML=CASCADE_input,END=141)
       WRITE ( *, CASCADE_input ) 
+      
+       hm2OUT=HepMC2OUT
+       hm3OUT=HepMC3OUT
+       hm2filnam=HepMC2File
+       hm3filnam=HepMC3File
+       hm3filfor=HepMC3Format
+       rvtana=RivetAnalyses
+       rvtrun=RivetRun
+       rvtOUT=RivetOUT
+       rvtfilnam=RivetFile
+       Nrvtana=size(rvtana)
+       
+      
+      
       
       Nevent = NrEvents
       Ipro = Process_Id      

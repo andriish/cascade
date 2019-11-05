@@ -29,7 +29,6 @@ extern "C" {
                     double &  xf1mom, double & xf2mom ,int&  pdf1,int& pdf2
                    ) {
 
-
         hepevent_hepmc2io.set_trust_mothers_before_daughters( true );
 
         // pythia pyhepc routine convert common PYJETS in common HEPEVT
@@ -46,7 +45,6 @@ extern "C" {
         std::vector<long> rs;
         rs.push_back(1);
         event_hepmc2->set_random_states(rs);
-
         //Set beams
         event_hepmc2->barcode_to_particle(1)->set_status(4);
         event_hepmc2->barcode_to_particle(2)->set_status(4);
@@ -56,7 +54,7 @@ extern "C" {
         HepMC::PdfInfo pdf( flav1, flav2, x1, x2, q2pdfeval, xf1mom, xf2mom , pdf1,pdf2);
         event_hepmc2->set_pdf_info(pdf);
 
-
+/*
         //Fix problems with broken record
         //1) Detached FSR photons and stable electrons with end vertex
         bool created_proper_final_electron=false;
@@ -131,7 +129,7 @@ extern "C" {
         }
 
         event_hepmc2->weights().push_back(1.0);
-
+*/
         //      std::cout << " ievent " << ievent << " iproc " << iproc << " xsec " <<xsec<< std::endl;
         // set cross section information set_cross_sectio( xsec, xsec_err)
         const double xsecval = xsec;

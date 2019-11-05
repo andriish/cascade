@@ -60,7 +60,7 @@ extern "C" {
 #else
         event=event_hepmc2;
 #endif
-        rivet->init(*event_hepmc2);
+       // rivet->init(*event_hepmc2);
         return 0;
     }
     int rivetrun_(const int &  id) {
@@ -79,7 +79,8 @@ extern "C" {
     }
     int rivetadd_(char* ana)
     {
-        analyses.insert(std::string(ana));
+        std::string z(ana);
+        if (z.length()>0) analyses.insert(z);
         return   analyses.size();
     }
     int rivetdone_(char* filename1) {

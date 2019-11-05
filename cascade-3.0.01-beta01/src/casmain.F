@@ -93,6 +93,7 @@ C...Glue functions
       INTEGER HepMC3_set_attribute_int,HepMC3_set_attribute_double
       INTEGER HepMC3_set_pdf_info,HepMC3_set_cross_section
       INTEGER HepMC3_new_weight
+      INTEGER HepMC3_set_weight_by_index
       EXTERNAL HepMC3_new_writer,HepMC3_delete_writer
       EXTERNAL HepMC3_set_hepevt_address
       EXTERNAL HepMC3_convert_event,HepMC3_write_event
@@ -100,6 +101,7 @@ C...Glue functions
       EXTERNAL HepMC3_set_attribute_int,HepMC3_set_attribute_double
       EXTERNAL HepMC3_set_pdf_info,HepMC3_set_cross_section
       EXTERNAL HepMC3_new_weight
+      EXTERNAL HepMC3_set_weight_by_index
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
       INTEGER NMXHEPL
       PARAMETER (NMXHEPL=10000)
@@ -204,13 +206,18 @@ c          weighthepmc = weight
 c          write(6,*) 'weight ' ,weight,normhepmc
           sumOfWeights = sumOfWeights + weighthepmc
         endif
-c        write(6,*) ' casmain: event weight = ',weighthepmc,ilha 
+        write(6,*) ' casmain: event weight = ',weighthepmc,ilha 
         if ( hm2OUT .OR. rvtHM .EQ. 2 .AND.rvtOUT) then          
-         HEPMCSTATUS=convhepmc(iev, isub, weighthepmc, xsec, xsece, 
-     +idP1,idP2,xidP1,xidP2,scale_process,pdf1,pdf2 )
+         HEPMCSTATUS=convhepmc(iev, isub, xsec, xsece, 
+     +idP1,idP2,xidP1,xidP2,scale_process,xidP1,xidP2,pdf1,pdf2 )
+C
+C              HEPMCSTATUS=convhepmc(iev, isub, xsec, xsece,
+C     &  KE, KP,x1,x2,q2pdfeval,xf1mom,xf2mom ,pdf1,pdf2  )
+     
          end if
          if (rvtOUT) then
          if (I.EQ.1) then 
+         write(*,*) ' once'
          RIVETSTATUS=rivetinitfirstevent(OUTID)
          end if
          RIVETSTATUS=rivetrun(OUTID)
@@ -238,8 +245,10 @@ c        write(6,*) ' casmain: event weight = ',weighthepmc,ilha
           HEPMC3STATUS=HepMC3_convert_event(OUTID)
           HEPMC3STATUS=HepMC3_set_cross_section(OUTID,
      &  xsec, xsece,iev,iev)
-C          HEPMC3STATUS=HepMC3_set_pdf_info(OUTID,
-C     &  KE, KP,x1,x2,q2pdfeval,xf1mom,xf2mom ,pdf1,pdf2)
+          HEPMCSTATUS=hepmc3_set_weight_by_index(OUTID, weighthepmc,0)
+C FIXME!
+          HEPMC3STATUS=HepMC3_set_pdf_info(OUTID,
+     &  idP1,idP2,xidP1,xidP2,scale_process,xidP1,xidP2,pdf1,pdf2)
           HEPMC3STATUS=HepMC3_set_attribute_int(OUTID,
      & -1,'mpi'//char(0))
           HEPMC3STATUS=HepMC3_set_attribute_int(OUTID,isub,
