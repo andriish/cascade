@@ -18,24 +18,20 @@ bin_PROGRAMS = cascade
 cascade_SOURCES =  casmain.F  drn.F  upevnt.F upinit.F pydata.f
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
-conv_source=convhepmc-helpers.F
+conv_source=convhepmc-helpers.F  Pythia6ToHepMC2.cc  Pythia6ToHepMC3.cc RivetInterface.cc
 if NO_HEPMC
-   conv_source+=convhepmc-dummy.cc
-else
-   conv_source+=convhepmc.cc
+AM_CPPFLAGS+=-DDUMMYPYTHIA6TOHEPMC2
 endif
 if NO_HEPMC3
-conv_source +=convhepmc3-dummy.cc 
-else
-conv_source +=convhepmc3.cc 
-endif
-if NO_TMDLIB
-   tmdlib_source=tmdlib-dummy.F
+AM_CPPFLAGS+=-DDUMMYPYTHIA6TOHEPMC3
 endif
 if NO_RIVET
-conv_source += convrivet-dummy.cc 
-else
-conv_source += convrivet.cc 
+AM_CPPFLAGS+=-DDUMMYRIVETINTERFACE
+endif
+
+
+if NO_TMDLIB
+   tmdlib_source=tmdlib-dummy.F
 endif
 if NO_PYTHIA8
    pythia8_source=pythia8frag-dummy.cc

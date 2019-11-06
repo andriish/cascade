@@ -1,5 +1,5 @@
 &CASCADE_input
-NrEvents = 5                              ! Nr of events to process
+NrEvents = 50                              ! Nr of events to process
 Process_Id = -1                            ! Read LHE file
 Hadronisation = 1                          ! Hadronisation on (=1)
 SpaceShower = 1                            ! Space-like Parton Shower

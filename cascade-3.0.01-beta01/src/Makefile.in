@@ -80,12 +80,9 @@ POST_UNINSTALL = :
 build_triplet = @build@
 host_triplet = @host@
 bin_PROGRAMS = cascade$(EXEEXT)
-@NO_HEPMC_TRUE@am__append_1 = convhepmc-dummy.cc
-@NO_HEPMC_FALSE@am__append_2 = convhepmc.cc
-@NO_HEPMC3_TRUE@am__append_3 = convhepmc3-dummy.cc 
-@NO_HEPMC3_FALSE@am__append_4 = convhepmc3.cc 
-@NO_RIVET_TRUE@am__append_5 = convrivet-dummy.cc 
-@NO_RIVET_FALSE@am__append_6 = convrivet.cc 
+@NO_HEPMC_TRUE@am__append_1 = -DDUMMYPYTHIA6TOHEPMC2
+@NO_HEPMC3_TRUE@am__append_2 = -DDUMMYPYTHIA6TOHEPMC3
+@NO_RIVET_TRUE@am__append_3 = -DDUMMYRIVETINTERFACE
 subdir = src
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am \
 	$(top_srcdir)/mkinstalldirs $(top_srcdir)/depcomp
@@ -142,21 +139,14 @@ am__libcascade2_la_SOURCES_DIST = aalam.F caps.F cascha.F caupevnt.F \
 	mcgen.F xvqq.F mevqq.F ktOrtAmVqNew.F xsecchi.F meoffchi.F \
 	mev.F xv1.F xsecjj.F meoffjj.F jj_ggf.F jj_me2.F input_steer.F \
 	steer_new.F cas_lheread.F convhepmc-helpers.F \
-	convhepmc-dummy.cc convhepmc.cc convhepmc3-dummy.cc \
-	convhepmc3.cc convrivet-dummy.cc convrivet.cc tmdlib-dummy.F \
-	pythia8frag.cc pythia8frag-dummy.cc casbran_new.F
-@NO_HEPMC_TRUE@am__objects_1 = convhepmc-dummy.lo
-@NO_HEPMC_FALSE@am__objects_2 = convhepmc.lo
-@NO_HEPMC3_TRUE@am__objects_3 = convhepmc3-dummy.lo
-@NO_HEPMC3_FALSE@am__objects_4 = convhepmc3.lo
-@NO_RIVET_TRUE@am__objects_5 = convrivet-dummy.lo
-@NO_RIVET_FALSE@am__objects_6 = convrivet.lo
-am__objects_7 = convhepmc-helpers.lo $(am__objects_1) $(am__objects_2) \
-	$(am__objects_3) $(am__objects_4) $(am__objects_5) \
-	$(am__objects_6)
-@NO_TMDLIB_TRUE@am__objects_8 = tmdlib-dummy.lo
-@NO_PYTHIA8_FALSE@am__objects_9 = pythia8frag.lo
-@NO_PYTHIA8_TRUE@am__objects_9 = pythia8frag-dummy.lo
+	Pythia6ToHepMC2.cc Pythia6ToHepMC3.cc RivetInterface.cc \
+	tmdlib-dummy.F pythia8frag.cc pythia8frag-dummy.cc \
+	casbran_new.F
+am__objects_1 = convhepmc-helpers.lo Pythia6ToHepMC2.lo \
+	Pythia6ToHepMC3.lo RivetInterface.lo
+@NO_TMDLIB_TRUE@am__objects_2 = tmdlib-dummy.lo
+@NO_PYTHIA8_FALSE@am__objects_3 = pythia8frag.lo
+@NO_PYTHIA8_TRUE@am__objects_3 = pythia8frag-dummy.lo
 am_libcascade2_la_OBJECTS = aalam.lo caps.lo cascha.lo caupevnt.lo \
 	dfun.lo event.lo mscatt.lo steer.lo xsecpsi.lo alphas.lo \
 	caps_ms.lo cascps.lo caupinit.lo dgrv_nln.lo fxn1.lo \
@@ -171,8 +161,8 @@ am_libcascade2_la_OBJECTS = aalam.lo caps.lo cascha.lo caupevnt.lo \
 	mevq.lo meqg.lo mcint.lo mcgen.lo xvqq.lo mevqq.lo \
 	ktOrtAmVqNew.lo xsecchi.lo meoffchi.lo mev.lo xv1.lo xsecjj.lo \
 	meoffjj.lo jj_ggf.lo jj_me2.lo input_steer.lo steer_new.lo \
-	cas_lheread.lo $(am__objects_7) $(am__objects_8) \
-	$(am__objects_9) casbran_new.lo
+	cas_lheread.lo $(am__objects_1) $(am__objects_2) \
+	$(am__objects_3) casbran_new.lo
 libcascade2_la_OBJECTS = $(am_libcascade2_la_OBJECTS)
 AM_V_lt = $(am__v_lt_@AM_V@)
 am__v_lt_ = $(am__v_lt_@AM_DEFAULT_V@)
@@ -453,16 +443,15 @@ top_srcdir = @top_srcdir@
 AM_FFLAGS = -I$(srcdir)/../include $(MYFFLAGS)
 #AM_CPPFLAGS+= -I$(PYTHIA8_DIR)/include
 AM_CPPFLAGS = -I$(srcdir)/../include -I$(HEPMC)/include \
-	-I$(BOOST_CFLAGS)
+	-I$(BOOST_CFLAGS) $(am__append_1) $(am__append_2) \
+	$(am__append_3)
 #EXTRA_DIST = $(top_srcdir)/src/pythia-bkdata/pydata.f
 AUTOMAKE_OPTIONS = subdir-objects
 #cascade_SOURCES =  casmain.F  drn.F  upevnt.F upinit.F $(top_srcdir)/src/pythia-bkdata/pydata.f
 cascade_SOURCES = casmain.F  drn.F  upevnt.F upinit.F pydata.f
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
 #cascade_FFLAGS = -I$(top_srcdir)/include -I$(PYTHIA_SOURCE) $(MYFFLAGS) 
-conv_source = convhepmc-helpers.F $(am__append_1) $(am__append_2) \
-	$(am__append_3) $(am__append_4) $(am__append_5) \
-	$(am__append_6)
+conv_source = convhepmc-helpers.F  Pythia6ToHepMC2.cc  Pythia6ToHepMC3.cc RivetInterface.cc
 @NO_TMDLIB_TRUE@tmdlib_source = tmdlib-dummy.F
 @NO_PYTHIA8_FALSE@pythia8_source = pythia8frag.cc
 @NO_PYTHIA8_TRUE@pythia8_source = pythia8frag-dummy.cc
@@ -626,12 +615,9 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/convhepmc-dummy.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/convhepmc.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/convhepmc3-dummy.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/convhepmc3.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/convrivet-dummy.Plo@am__quote@
-@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/convrivet.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Pythia6ToHepMC2.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/Pythia6ToHepMC3.Plo@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/RivetInterface.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pythia8frag-dummy.Plo@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/pythia8frag.Plo@am__quote@
 
