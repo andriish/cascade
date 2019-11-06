@@ -6,14 +6,14 @@ using namespace std;
 
 
 
-extern "C" {   
+extern "C" {
 
-int ncountp8 =0 ;
+    int ncountp8 =0 ;
 
-void pythia8frag_(){
-    
-   cout << " pythia8frag dummy " << endl;
-      
+    void pythia8frag_() {
 
-   }
+        cout << " pythia8frag dummy " << endl;
+
+
+    }
 }

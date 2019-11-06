@@ -73,18 +73,16 @@ c
       CALL CASCADE
       
 c      call PYLIST(12)
-CAV      CALL GETENV("HEPMCOUT", hepmcout_env)
-CAV      if(hepmcout_env.ne.' ') then
-CAV        hepmcout = trim(hepmcout_env)//char(0)
-CAV        write(6,*) ' hepmcout from environment variable = ',trim(hepmcout)
-CAV        else
-CAV        hepmcout=trim(hepmcout)//char(0)
-CAV        write(6,*) ' hepmcout from steering file = ',trim(hepmcout)
-CAV      endif
+      CALL GETENV("HEPMCOUT", hepmcout_env)
+      if(hepmcout_env.ne.' ') then
+      hm2filnam = trim(hepmcout_env)//char(0)
+      write(6,*)' hepmcout from environment variable = ',trim(hm2filnam)
+      else
+      write(6,*)' hepmcout from steering file = ',trim(hm2filnam)
+      endif
 C-- Init HepMC2      
       if (hm2OUT) then      
       OID2=HepMC2_new_writer(0,0,trim(hm2filnam)//char(0))
-      HM2STATUS=HepMC2_new_weight(OID2,'Default'//char(0))
       endif
 C-- Init HepMC3      
       if (hm3OUT) then
@@ -155,9 +153,11 @@ c          write(6,*) 'weight ' ,weight,normhepmc
 C-- This is for Rivet with HepMC2 interface
          if ( hm2OUT .OR. rvtHM .EQ. 2 .AND.rvtOUT) then          
           HM2STATUS=HepMC2_convert_event(OID2)
+          HM2STATUS=HepMC2_new_weight(OID2,'Default'//char(0))
+          HM2STATUS=HepMC2_set_weight_by_index(OID2,weighthepmc,0)
           HM2STATUS=HepMC2_set_cross_section(OID2,
      &  xsec, xsece,iev,iev)
-C FIX IT
+C -- FIXME/CHECK the meaning of the variables
           HM2STATUS=HepMC2_set_pdf_info(OID2,
      &  idP1,idP2,xidP1,xidP2,scale_process,xidP1,xidP2,pdf1,pdf2)
           HM2STATUS=HepMC2_set_attribute_int(OID2,
@@ -166,9 +166,9 @@ C FIX IT
      &    'set_signal_process_id'//char(0))
           HM2STATUS=HepMC2_set_attribute_int(OID2,ISEED,
      &  'random_states1'//char(0))
-          HM2STATUS=HepMC2_set_attribute_double(OID2,-1.0,
+          HM2STATUS=HepMC2_set_attribute_double(OID2,-1.0D0,
      &   'alphaEM'//char(0))
-          HM2STATUS=HepMC2_set_attribute_double(OID2,-1.0,
+          HM2STATUS=HepMC2_set_attribute_double(OID2,-1.0D0,
      &   'alphaQCD'//char(0))
           HM2STATUS=HepMC2_set_attribute_double(OID2,scale_process,
      &  'event_scale'//char(0))
@@ -204,8 +204,10 @@ C-- This is for Rivet with HepMC3 interface
           VHEPL(4,J)=VHEP(4,J)
   500     CONTINUE  
           HM3STATUS=HepMC3_convert_event(OID3)
+          HM3STATUS=HepMC3_set_weight_by_index(OID3,weighthepmc,0)
           HM3STATUS=HepMC3_set_cross_section(OID3,
      &  xsec, xsece,iev,iev)
+C -- FIXME/CHECK the meaning of the variables
           HM3STATUS=HepMC3_set_pdf_info(OID3,
      &  idP1,idP2,xidP1,xidP2,scale_process,xidP1,xidP2,pdf1,pdf2)
           HM3STATUS=HepMC3_set_attribute_int(OID3,
@@ -214,12 +216,15 @@ C-- This is for Rivet with HepMC3 interface
      &    'set_signal_process_id'//char(0))
           HM3STATUS=HepMC3_set_attribute_int(OID3,ISEED,
      &  'random_states1'//char(0))
-          HM3STATUS=HepMC3_set_attribute_double(OID3,-1.0,
+          HM3STATUS=HepMC3_set_attribute_double(OID3,-1.0D0,
      &   'alphaEM'//char(0))
-          HM3STATUS=HepMC3_set_attribute_double(OID3,-1.0,
+          HM3STATUS=HepMC3_set_attribute_double(OID3,-1.0D0,
      &   'alphaQCD'//char(0))
           HM3STATUS=HepMC3_set_attribute_double(OID3,scale_process,
      &  'event_scale'//char(0))
+C -- FIXME and put some physical scale!
+          HM3STATUS=HepMC3_set_attribute_double(OID3,0.4242D0,
+     &  'tmd_scale'//char(0))
           if (hm3OUT) HM3STATUS=HepMC3_write_event(OID3)
 C-- This is for Rivet
          if (rvtHM .EQ. 3 .AND.rvtOUT) then
@@ -269,7 +274,8 @@ c
          write(6,*) ' sum of weights ',sumOfWeights   
       endif   
       call cpu_time(finish)
-      write(6,*) ' CASCADE running time = ',finish-start,' seconds.  Time/event =',(finish-start)/Nevent
+      write(6,*) ' CASCADE running time = ',finish-start,
+     & ' seconds.  Time/event =',(finish-start)/Nevent
       STOP
 
       END

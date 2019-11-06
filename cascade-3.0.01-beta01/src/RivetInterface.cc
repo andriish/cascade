@@ -3,8 +3,8 @@ extern "C" {
     int rivet_interface_version_()
     {
         return 0;
-    }    
-    int rivet_init_(char* rname1) 
+    }
+    int rivet_init_(char* rname1)
     {
         return 0;
     }
@@ -12,15 +12,15 @@ extern "C" {
     {
         return 0;
     }
-    int rivet_run_() 
+    int rivet_run_()
     {
         return 0;
     }
-    int rivet_add_analysis_(char* ana) 
+    int rivet_add_analysis_(char* ana)
     {
         return   0;
     }
-    int rivet_done_(char* filename1) 
+    int rivet_done_(char* filename1)
     {
         return 0;
     }
@@ -38,21 +38,21 @@ extern "C" {
 #endif
 #ifdef USE_RIVET_HEPMC3
 #define   RIVET_HEPMC_VERSION   3
-    /**  HepMC3 event to reads from*/
-    HepMC3::GenEvent* event=NULL;    
-    extern HepMC3::GenEvent* hepmc3_gWriters_get_event(const int & position);
+/**  HepMC3 event to reads from*/
+HepMC3::GenEvent* event=NULL;
+extern HepMC3::GenEvent* hepmc3_gWriters_get_event(const int & position);
 #else
-#define   RIVET_HEPMC_VERSION    2 
-    /**  HepMC event to reads from*/
-    HepMC::GenEvent* event=NULL;    
-    extern HepMC::GenEvent* hepmc2_gWriters_get_event(const int & position);
-#endif 
+#define   RIVET_HEPMC_VERSION    2
+/**  HepMC event to reads from*/
+HepMC::GenEvent* event=NULL;
+extern HepMC::GenEvent* hepmc2_gWriters_get_event(const int & position);
+#endif
 
 extern "C" {
-   int rivet_interface_version_()
+    int rivet_interface_version_()
     {
         return RIVET_HEPMC_VERSION;
-    }    
+    }
 
     /**The name of the file where the histograms are dumped.*/
     std::string filename;
@@ -96,7 +96,7 @@ extern "C" {
         event=hepmc2_gWriters_get_event(id);
 #endif
         if (!event) { puts("Something is wrong with event!"); return 1;}
-        
+
         if (!event->particles_size()) { printf("Something is wrong with particles!   %i\n",id); return 2;}
         if (!event->cross_section()) { puts("Something is wrong with cross-section!"); return 3;}
         rivet->analyze(*event);
