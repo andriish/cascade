@@ -31,12 +31,13 @@ extern "C" {
 #include <vector>
 #include <string>
 #include "Rivet/Rivet.hh"
-#ifdef ENABLE_HEPMC_3
+#include "Rivet/Config/RivetConfig.hh"
+#ifdef RIVET_ENABLE_HEPMC_3
 #include "HepMC3/GenEvent.h"
 #else
 #include "HepMC/GenEvent.h"
 #endif
-#ifdef ENABLE_HEPMC_3
+#ifdef RIVET_ENABLE_HEPMC_3
 #define   RIVET_HEPMC_VERSION   3
 /**  HepMC3 event to reads from*/
 HepMC3::GenEvent* event=NULL;
@@ -79,7 +80,7 @@ extern "C" {
     }
     int rivet_init_first_event_(const int &  id)
     {
-#ifdef ENABLE_HEPMC_3
+#ifdef RIVET_ENABLE_HEPMC_3
         event=hepmc3_gWriters_get_event(id);
         rivet->init(*event_hepmc2);
 #else
@@ -90,7 +91,7 @@ extern "C" {
         return 0;
     }
     int rivet_run_(const int &  id) {
-#ifdef ENABLE_HEPMC_3
+#ifdef RIVET_ENABLE_HEPMC_3
         event=hepmc3_gWriters_get_event(id);
 #else
         event=hepmc2_gWriters_get_event(id);
