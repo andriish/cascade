@@ -93,12 +93,13 @@ extern "C" {
     int rivet_run_(const int &  id) {
 #ifdef RIVET_ENABLE_HEPMC_3
         event=hepmc3_gWriters_get_event(id);
+        if (!event) { puts("Something is wrong with event!"); return 1;}
+        if (!event->particles().size()) { printf("Something is wrong with particles!   %i\n",id); return 2;}
 #else
         event=hepmc2_gWriters_get_event(id);
-#endif
         if (!event) { puts("Something is wrong with event!"); return 1;}
-
         if (!event->particles_size()) { printf("Something is wrong with particles!   %i\n",id); return 2;}
+#endif
         if (!event->cross_section()) { puts("Something is wrong with cross-section!"); return 3;}
         rivet->analyze(*event);
         return 0;
