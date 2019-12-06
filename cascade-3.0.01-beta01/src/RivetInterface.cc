@@ -82,7 +82,7 @@ extern "C" {
     {
 #ifdef RIVET_ENABLE_HEPMC_3
         event=hepmc3_gWriters_get_event(id);
-        rivet->init(*event_hepmc2);
+        rivet->init(*event);
 #else
         event=hepmc2_gWriters_get_event(id);
         rivet->init(*event);
