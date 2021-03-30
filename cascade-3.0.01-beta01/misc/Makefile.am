@@ -4,9 +4,9 @@
 
 AM_FFLAGS = $(MYFFLAGS)
 
-lib_LTLIBRARIES = libmycern.la
+lib_LTLIBRARIES = libcascademycern.la
 
-libmycern_la_SOURCES = abend.F  besi0.F  expint.F  ranlux.F  rnpssn.F  \
+libcascademycern_la_SOURCES = abend.F  besi0.F  expint.F  ranlux.F  rnpssn.F  \
                          ucopy.F  vzero.F dgauss.F rnormx.F \
                          datime.F timex.F timest.F
  
