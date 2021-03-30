@@ -65,7 +65,7 @@ libcascade2_la_SOURCES = aalam.F    caps.F      cascha.F    caupevnt.F  dfun.F  
 #                   meoffjpsi.F pdfset.F   structm.F  structp.F 
 
 
-cascade_LDADD =  ./libcascade2.la ../bases51/libbases.la \
-                $(HEPMCLIB) $(HEPMC3LIB) $(RIVETLIB) $(PYTHIALIB) $(TMDLIB) $(PDFLIB)  $(GSL_LIB) $(PYTHIA8LIB) ../misc/libmycern.la -lstdc++ -lm
+cascade_LDADD =  ./libcascade2.la ../bases51/libcascadebases.la \
+                $(HEPMCLIB) $(HEPMC3LIB) $(RIVETLIB) $(PYTHIALIB) $(TMDLIB) $(PDFLIB)  $(GSL_LIB) $(PYTHIA8LIB) ../misc/libcascademycern.la -lstdc++ -lm
                 
 	
